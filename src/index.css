@@ -1,3 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700&display=swap');
+
 @tailwind base;
+
+@layer base {
+	* {
+		@apply box-border list-none p-0 m-0 scroll-smooth;
+	}
+	body {
+		@apply min-h-screen font-raleway container max-w-[1440px] mx-auto;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-size: inherit;
+		font-weight: inherit;
+	}
+	ol,
+	ul {
+		@apply list-none;
+	}
+	img,
+	svg,
+	video,
+	canvas,
+	audio,
+	iframe,
+	embed,
+	object {
+		@apply block align-middle;
+	}
+}
+
+.ant-tabs-tab-btn {
+	display: flex;
+	align-items: center;
+}
+
+.ant-menu-light.ant-menu-root.ant-menu-vertical {
+	border-inline-end: unset;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
 @tailwind components;
 @tailwind utilities;

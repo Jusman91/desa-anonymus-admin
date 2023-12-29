@@ -6,8 +6,15 @@ export default {
 		'./app/**/*.{ts,tsx}',
 		'./src/**/*.{ts,tsx}',
 	],
+	corePlugins: {
+		preflight: false,
+	},
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				raleway: ['Raleway', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [],
 };

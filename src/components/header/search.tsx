@@ -5,7 +5,7 @@ import { IoSearchCircleSharp } from 'react-icons/io5';
 import Icon from '../elements/icon';
 
 const Search = () => {
-	const [active, setActive] = useToggle(false);
+	const [active, toggleActive] = useToggle(false);
 	return (
 		<Flex justify='center' align='center'>
 			<Input
@@ -16,7 +16,7 @@ const Search = () => {
 				)}
 			/>
 			<Icon
-				onClick={setActive}
+				onClick={toggleActive}
 				className='text-lg cursor-pointer'>
 				<IoSearchCircleSharp />
 			</Icon>

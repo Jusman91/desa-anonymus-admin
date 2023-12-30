@@ -1,7 +1,11 @@
 import { cn } from '@/lib/utils';
-import { IIcon } from '@/types';
+import { DivElement } from '@/types';
 
-const Icon = ({ children, className, ...props }: IIcon) => {
+const Icon = ({
+	children,
+	className,
+	...props
+}: DivElement) => {
 	return (
 		<div
 			{...props}

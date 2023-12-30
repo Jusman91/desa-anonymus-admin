@@ -1,17 +1,26 @@
-import { Avatar, Flex, Typography } from 'antd';
+import { Avatar, Flex } from 'antd';
 import DEFAULT_PROFILE from '@/assets/img/user_default.jpg';
-const { Text } = Typography;
+import { useMenuCollapseContext } from '@/hooks/use-context';
+import { cn } from '@/lib/utils';
 
 const ProfileAdmin = () => {
+	const { collapse } = useMenuCollapseContext();
+
 	return (
-		<Flex align='center' gap={6}>
+		<Flex align='center' gap={8}>
 			<Avatar src={DEFAULT_PROFILE} size={'large'} />
-			{/* <img src={DEFAULT_PROFILE} alt='Profile' /> */}
-			<Flex vertical>
-				<Text className='text-xs leading-none'>Admin</Text>
-				<Text type='secondary' className='text-[10px]'>
+			<Flex
+				vertical
+				className={cn(
+					collapse ? 'w-0 opacity-0' : 'w-fit opacit-100',
+					'transition-all duration-300 text-white font-semibold',
+				)}>
+				<small className='text-xs leading-none'>
+					Admin
+				</small>
+				<small className='text-[10px] opacity-55'>
 					Administrator
-				</Text>
+				</small>
 			</Flex>
 		</Flex>
 	);

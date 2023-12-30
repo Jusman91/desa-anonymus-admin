@@ -1,26 +1,16 @@
-import { menuItems } from '@/static/menu-items';
-import { Menu, MenuProps } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { IMenus } from '@/types';
+import { Menu } from 'antd';
 
-const Menus = () => {
-	const navigate = useNavigate();
-	const handleNavigate: MenuProps['onClick'] = (e) => {
-		navigate(e.key);
-		localStorage.setItem(
-			'selectedKeys',
-			JSON.stringify([e.key]),
-		);
-	};
-
-	const defaultSelectedKeys = JSON.parse(
-		localStorage.getItem('selectedKeys') ||
-			'["/dashboard"]',
-	);
+const Menus = ({
+	items,
+	selectedKeys,
+	onClick,
+}: IMenus) => {
 	return (
 		<Menu
-			items={menuItems}
-			selectedKeys={defaultSelectedKeys}
-			onClick={handleNavigate}
+			items={items}
+			selectedKeys={selectedKeys}
+			onClick={onClick}
 		/>
 	);
 };

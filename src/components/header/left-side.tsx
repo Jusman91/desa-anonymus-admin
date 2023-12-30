@@ -2,10 +2,13 @@ import { useLocation } from 'react-router-dom';
 
 const LeftSide = () => {
 	const location = useLocation();
-	const titleBar = location.pathname.split('/').pop();
+	const titleBar =
+		location.pathname.split('/').pop() || 'dashboard';
 	return (
 		<aside>
-			<h5 className='text-sm font-medium'>{titleBar}</h5>
+			<h5 className='capitalize text-sm font-medium'>
+				{titleBar}
+			</h5>
 		</aside>
 	);
 };

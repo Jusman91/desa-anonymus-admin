@@ -16,8 +16,7 @@ const SideBar = () => {
 	};
 
 	const selectedKeys = JSON.parse(
-		sessionStorage.getItem('selectedKeys') ||
-			'["/dashboard"]',
+		sessionStorage.getItem('selectedKeys') || '["/"]',
 	);
 
 	return (

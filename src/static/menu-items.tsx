@@ -32,7 +32,7 @@ export const menuItems: MenuProps['items'] = [
 		undefined,
 		undefined,
 		[
-			getItem('Dashboard', '/dashboard', <MdDashboard />),
+			getItem('Dashboard', '/', <MdDashboard />),
 			getItem(
 				'Users',
 				'/users',

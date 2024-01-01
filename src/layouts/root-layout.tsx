@@ -26,11 +26,11 @@ const RootLayout = () => {
 						collapse={collapse}
 					/>
 				</section>
-				<Layout className='px-4 py-2'>
-					<Header className='flex h-14 items-center rounded-md bg-[#192930] pl-2 pr-4 sticky top-2'>
+				<Layout className='px-4'>
+					<Header className='flex h-14 items-center rounded-md bg-[#192930] pl-2 pr-4 sticky top-0'>
 						<Navbar />
 					</Header>
-					<Content>
+					<Content className='py-2'>
 						<Outlet />
 					</Content>
 					<Footer />

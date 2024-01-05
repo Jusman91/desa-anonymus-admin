@@ -1,4 +1,5 @@
 import { MenuCollapseProvider } from '@/contexts/menu-collapse-context';
+import QueryProviders from '@/lib/react-query/query-providers';
 import Routes from '@/routes';
 import { ConfigProvider, theme } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
@@ -22,11 +23,13 @@ const App = () => {
 				},
 				algorithm: theme.darkAlgorithm,
 			}}>
-			<MenuCollapseProvider>
-				<BrowserRouter>
-					<Routes />
-				</BrowserRouter>
-			</MenuCollapseProvider>
+			<QueryProviders>
+				<MenuCollapseProvider>
+					<BrowserRouter>
+						<Routes />
+					</BrowserRouter>
+				</MenuCollapseProvider>
+			</QueryProviders>
 		</ConfigProvider>
 	);
 };

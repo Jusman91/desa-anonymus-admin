@@ -3,13 +3,17 @@ import ButtonCollapse from '@/components/fragments/button-collapse';
 import Navbar from '@/components/header/navbar';
 import SideBar from '@/components/sidebar/side-bar';
 import { useMenuCollapseContext } from '@/hooks/use-context';
+import { getUser } from '@/utils/handle-session';
 import { Layout } from 'antd';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 const RootLayout = () => {
 	const { collapse, toggleCollapse } =
 		useMenuCollapseContext();
+	const user = getUser();
+
+	if (!user) return <Navigate to={'/auth/login'} />;
 
 	return (
 		<main className='relative'>

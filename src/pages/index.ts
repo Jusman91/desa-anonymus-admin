@@ -1,5 +1,4 @@
 export { default as Home } from './home/home';
-export { default as Register } from './auth/register';
 export { default as Login } from './auth/login';
 export { default as App } from './app';
 export { default as Users } from './users/users';

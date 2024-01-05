@@ -1,6 +1,8 @@
 import React from 'react';
 import { MenuProps } from 'antd';
 import { ChartOptions } from 'chart.js';
+import { Rule } from 'antd/es/form';
+import { AxiosError } from 'axios';
 
 export type DivElement =
 	React.HTMLAttributes<HTMLDivElement>;
@@ -10,6 +12,35 @@ export type TypogaraphyElement =
 
 export type MenuItems =
 	Required<MenuProps>['items'][number];
+
+// auth
+export interface ILoginInput {
+	email: string;
+	password: string;
+}
+export interface ILoginResponse {
+	message: string;
+	accessToken: string;
+}
+export interface IUserAdmin {
+	_id: string;
+	username: string;
+	email: string;
+	profilePic: string;
+	role: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+}
+export interface IRulesLogin {
+	email: Rule[];
+	password: Rule[];
+}
+export interface IAuthFormContextProps {
+	handleSubmit: (value: ILoginInput) => void;
+	loginIsPending: boolean;
+}
+// end auth
 export interface ICollapseProps {
 	toggleCollapse: () => void;
 	collapse: boolean;
@@ -67,3 +98,19 @@ export interface INewProduct {
 export interface INewDataProps {
 	data: INewArticle | INewProduct;
 }
+
+export interface ICreateUser {
+	username: string;
+	email: string;
+	password: string;
+}
+export interface IResponseError extends AxiosError {
+	message: string;
+	status: number;
+}
+
+export type MessageType =
+	| 'success'
+	| 'info'
+	| 'warning'
+	| 'error';

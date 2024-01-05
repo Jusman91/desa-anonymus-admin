@@ -2,13 +2,18 @@ import { Avatar, Flex } from 'antd';
 import DEFAULT_PROFILE from '@/assets/img/user_default.jpg';
 import { useMenuCollapseContext } from '@/hooks/use-context';
 import { cn } from '@/lib/utils';
+import { getUser } from '@/utils/handle-session';
 
 const ProfileAdmin = () => {
 	const { collapse } = useMenuCollapseContext();
+	const { username, profilePic, role } = getUser();
 
 	return (
 		<Flex align='center' gap={8}>
-			<Avatar src={DEFAULT_PROFILE} size={'large'} />
+			<Avatar
+				src={profilePic ? profilePic : DEFAULT_PROFILE}
+				size={'large'}
+			/>
 			<Flex
 				vertical
 				className={cn(
@@ -16,10 +21,10 @@ const ProfileAdmin = () => {
 					'transition-all duration-300 text-white font-semibold',
 				)}>
 				<small className='text-xs leading-none'>
-					Admin
+					{username}
 				</small>
 				<small className='text-[10px] opacity-55'>
-					Administrator
+					{role}
 				</small>
 			</Flex>
 		</Flex>

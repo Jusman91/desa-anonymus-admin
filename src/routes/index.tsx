@@ -17,7 +17,6 @@ import {
 	Login,
 	NotFound,
 	Products,
-	Register,
 	SingleArticle,
 	SingleProduct,
 	SingleUser,
@@ -35,10 +34,6 @@ const Routes = () => {
 			element: <AuthLayout />,
 			children: [
 				{
-					path: 'register',
-					element: <Register />,
-				},
-				{
 					path: 'login',
 					element: <Login />,
 				},
@@ -49,7 +44,7 @@ const Routes = () => {
 			element: <RootLayout />,
 			children: [
 				{
-					path: '',
+					path: '/',
 					element: <Home />,
 				},
 				{

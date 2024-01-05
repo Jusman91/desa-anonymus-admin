@@ -1,10 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { AuthFormContextProvider } from '@/contexts/auth-form-context';
+import { getUser } from '@/utils/handle-session';
+import { Layout } from 'antd';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const AuthLayout = () => {
+	const user = getUser();
+	if (user) return <Navigate to={'/'} />;
 	return (
-		<div>
-			<Outlet />
-		</div>
+		<AuthFormContextProvider>
+			<Layout className='grid place-items-center min-h-screen'>
+				<Outlet />
+			</Layout>
+		</AuthFormContextProvider>
 	);
 };
 

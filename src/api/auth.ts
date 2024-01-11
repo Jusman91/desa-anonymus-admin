@@ -6,7 +6,7 @@ import {
 } from '@/types';
 import axios from 'axios';
 
-export async function loginUserFn(params: ILoginInput) {
+export async function getloginUserFn(params: ILoginInput) {
 	try {
 		const { data } =
 			await axiosInstance.post<ILoginResponse>(

@@ -1,4 +1,4 @@
-import { isProduct } from '@/lib/utils';
+import { isProduct } from '@/lib/utils/utils';
 import { INewDataProps } from '@/types';
 import { Avatar, Flex } from 'antd';
 

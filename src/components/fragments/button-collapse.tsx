@@ -2,7 +2,7 @@ import { Button, Tooltip } from 'antd';
 import Icon from '../elements/icon';
 import { MdArrowBackIosNew } from 'react-icons/md';
 import { ICollapseProps } from '@/types';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/utils';
 
 const ButtonCollapse = ({
 	toggleCollapse,

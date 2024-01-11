@@ -13,7 +13,7 @@ import {
 	ChartOptions,
 	TooltipItem,
 } from 'chart.js';
-import { getSatisfaction } from '../utils';
+import { getSatisfaction } from '../utils/utils';
 import { IChartConfigOptions } from '@/types';
 
 ChartJS.register(

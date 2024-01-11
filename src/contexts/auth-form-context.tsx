@@ -8,7 +8,7 @@ import {
 	ILoginInput,
 	IResponseError,
 } from '@/types';
-import { saveAccessToken } from '@/utils/handle-session';
+import { saveAccessToken } from '@/handlers/handle-session';
 import {
 	ReactNode,
 	createContext,
@@ -30,7 +30,7 @@ export const AuthFormContextProvider = ({
 	const { mutate: userLogin, isPending: loginIsPending } =
 		useLogin();
 	const { refetch } = useLoggedIn();
-	const toastMessage = useMessage();
+	const { toastMessage } = useMessage();
 
 	const handleSubmit = useCallback(
 		(values: ILoginInput) => {

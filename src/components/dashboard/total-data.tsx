@@ -3,7 +3,7 @@ import TOTAL_LOGO from '@/assets/img/total-log.png';
 import CustomTypography from '../elements/typography';
 import { Link } from 'react-router-dom';
 import { ITotalDataProps } from '@/types';
-import { getColorPercentage } from '@/lib/utils';
+import { getColorPercentage } from '@/lib/utils/utils';
 import { Line } from 'react-chartjs-2';
 import { setupLineChart } from '@/lib/chart/chart-setup';
 import { LineChartOption } from '@/lib/chart/chart-config';

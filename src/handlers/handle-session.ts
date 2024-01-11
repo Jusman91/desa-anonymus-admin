@@ -1,5 +1,5 @@
 import { key } from '@/static/key';
-import { IUserAdmin } from '@/types';
+import { IUser } from '@/types';
 
 export function saveAccessToken(accessToken: string) {
 	return sessionStorage.setItem(
@@ -21,14 +21,14 @@ export function removeAccessToken() {
 	);
 }
 
-export function saveUser(User: IUserAdmin) {
+export function saveUser(User: IUser) {
 	return sessionStorage.setItem(
 		key.USER_SESSION_STORAGE_KEY,
 		JSON.stringify(User),
 	);
 }
 
-export function getUser(): IUserAdmin {
+export function getUser(): IUser {
 	const user = sessionStorage.getItem(
 		key.USER_SESSION_STORAGE_KEY,
 	);

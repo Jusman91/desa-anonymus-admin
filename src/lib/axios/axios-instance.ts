@@ -2,7 +2,7 @@ import {
 	getAccessToken,
 	removeAccessToken,
 	removeUser,
-} from '@/utils/handle-session';
+} from '@/handlers/handle-session';
 import axios from 'axios';
 
 const axiosInstance = axios.create({

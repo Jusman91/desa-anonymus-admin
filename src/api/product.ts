@@ -1,16 +1,16 @@
 import axiosInstance from '@/lib/axios/axios-instance';
 import {
-	ICreateUser,
+	ICreateProduct,
 	IFnParams,
 	IResponseError,
 	IResponseSuccess,
-	IUpdateUserFnProps,
+	IUpdateProductFnProps,
 } from '@/types';
 import axios from 'axios';
 
-export async function getUsersFn(params: IFnParams) {
+export async function getProductsFn(params: IFnParams) {
 	try {
-		const { data } = await axiosInstance.get('/users', {
+		const { data } = await axiosInstance.get('/products', {
 			params,
 		});
 		return data as IResponseSuccess;
@@ -21,10 +21,10 @@ export async function getUsersFn(params: IFnParams) {
 	}
 }
 
-export async function getUserFn(userId: string) {
+export async function getProductFn(id: string) {
 	try {
 		const { data } = await axiosInstance.get(
-			`/users/${userId}`,
+			`/products/${id}`,
 		);
 		return data;
 	} catch (error) {
@@ -34,11 +34,13 @@ export async function getUserFn(userId: string) {
 	}
 }
 
-export async function createUserFn(newUser: ICreateUser) {
+export async function createProductFn(
+	newProduct: ICreateProduct,
+) {
 	try {
 		const { data } = await axiosInstance.post(
-			'/users',
-			newUser,
+			'/products',
+			newProduct,
 		);
 		return data;
 	} catch (error) {
@@ -48,13 +50,13 @@ export async function createUserFn(newUser: ICreateUser) {
 	}
 }
 
-export async function upadateUserFn({
+export async function upadateProductFn({
 	id,
 	formData,
-}: IUpdateUserFnProps) {
+}: IUpdateProductFnProps) {
 	try {
 		const { data } = await axiosInstance.put(
-			`/users/${id}`,
+			`/products/${id}`,
 			formData,
 		);
 		return data;
@@ -65,10 +67,10 @@ export async function upadateUserFn({
 	}
 }
 
-export async function deleteUserFn(id: string) {
+export async function deleteProductFn(id: string) {
 	try {
 		const { data } = await axiosInstance.delete(
-			`/users/${id}`,
+			`/product/${id}`,
 		);
 		return data;
 	} catch (error) {

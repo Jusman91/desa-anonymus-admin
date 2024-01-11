@@ -1,5 +1,5 @@
 import { AuthFormContextProvider } from '@/contexts/auth-form-context';
-import { getUser } from '@/utils/handle-session';
+import { getUser } from '@/handlers/handle-session';
 import { Layout } from 'antd';
 import { Navigate, Outlet } from 'react-router-dom';
 

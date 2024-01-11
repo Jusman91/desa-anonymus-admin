@@ -1,4 +1,18 @@
 export const key = {
+	QUERY_KEY_LOGIN: 'logged-in',
+	MUTATION_KEY_LOGIN: 'login',
 	ACCESS_TOKEN_SESSION_STORAGE_KEY: 'accessToken',
 	USER_SESSION_STORAGE_KEY: 'user',
+	QUERY_KEY_USERS: 'users',
+	QUERY_KEY_USER: 'user',
+	MUTATION_KEY_CREATE_USER: 'create-user',
+	MUTATION_KEY_UPDATE_USER: 'update-user',
+	MUTATION_KEY_DELETE_USER: 'delete-user',
+	QUERY_KEY_PRODUCTS: 'products',
+	QUERY_KEY_PRODUCT: 'product',
+	MUTATION_KEY_CREATE_PRODUCT: 'create-product',
+	MUTATION_KEY_UPDATE_PRODUCT: 'update-product',
+	MUTATION_KEY_DELETE_PRODUCT: 'delete-product',
+	QUERY_KEY_CATEGORIES_PRODUCT: 'categories-product',
+	QUERY_KEY_CATEGORIES_ARTICLE: 'categories-article',
 };

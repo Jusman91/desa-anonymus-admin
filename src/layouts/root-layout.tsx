@@ -3,7 +3,7 @@ import ButtonCollapse from '@/components/fragments/button-collapse';
 import Navbar from '@/components/header/navbar';
 import SideBar from '@/components/sidebar/side-bar';
 import { useMenuCollapseContext } from '@/hooks/use-context';
-import { getUser } from '@/utils/handle-session';
+import { getUser } from '@/handlers/handle-session';
 import { Layout } from 'antd';
 import { Navigate, Outlet } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ const RootLayout = () => {
 					/>
 				</section>
 				<Layout className='px-4'>
-					<Header className='flex h-14 items-center rounded-md bg-[#192930] pl-2 pr-4 sticky top-0'>
+					<Header className='flex h-14 items-center rounded-md bg-[#192930] pl-2 pr-4 sticky top-0 z-[999]'>
 						<Navbar />
 					</Header>
 					<Content className='py-2'>

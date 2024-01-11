@@ -10,5 +10,5 @@ export function useMessage() {
 		},
 		[],
 	);
-	return toastMessage;
+	return { toastMessage };
 }

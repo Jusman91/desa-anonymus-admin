@@ -20,6 +20,9 @@ const App = () => {
 					Menu: {
 						itemSelectedBg: '#D2EEF4',
 					},
+					Table: {
+						fontSize: 12,
+					},
 				},
 				algorithm: theme.darkAlgorithm,
 			}}>

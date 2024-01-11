@@ -1,6 +1,7 @@
-import { getMeFn, loginUserFn } from '@/api/auth';
+import { getMeFn, getloginUserFn } from '@/api/auth';
+import { key } from '@/static/key';
 import { ILoginInput } from '@/types';
-import { saveUser } from '@/utils/handle-session';
+import { saveUser } from '@/handlers/handle-session';
 import {
 	useMutation,
 	useQuery,
@@ -8,15 +9,15 @@ import {
 
 export function useLogin() {
 	return useMutation({
-		mutationKey: ['login'],
+		mutationKey: [key.MUTATION_KEY_LOGIN],
 		mutationFn: (userData: ILoginInput) =>
-			loginUserFn(userData),
+			getloginUserFn(userData),
 	});
 }
 
 export function useLoggedIn() {
 	const query = useQuery({
-		queryKey: ['loggedIn'],
+		queryKey: [key.QUERY_KEY_LOGIN],
 		queryFn: getMeFn,
 		enabled: false,
 		retry: 1,

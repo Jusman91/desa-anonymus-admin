@@ -6,6 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+export const convertFileToUrl = (file: File) =>
+	URL.createObjectURL(file);
+
 export function getColorPercentage(
 	percentage: number,
 ): string {
@@ -53,4 +56,32 @@ export function isProduct(
 	data: INewProduct | INewArticle,
 ): data is INewProduct {
 	return 'price' in data;
+}
+
+export const getInStock = (
+	inStockString: string | null,
+) => {
+	switch (inStockString) {
+		case 'true':
+			return true;
+		case 'false':
+			return false;
+		default:
+			undefined;
+	}
+};
+
+export function formatDate(dateString: string) {
+	const languageCode = 'id-ID';
+	const options: Intl.DateTimeFormatOptions = {
+		weekday: 'long',
+		day: 'numeric',
+		month: 'short',
+		year: 'numeric',
+		hour: 'numeric',
+		minute: '2-digit',
+	};
+
+	const date = new Date(dateString);
+	return date.toLocaleDateString(languageCode, options);
 }

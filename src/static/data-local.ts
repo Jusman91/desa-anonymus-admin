@@ -68,42 +68,42 @@ export const newArticle = [
 		thumbnail:
 			'https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1600',
 		title: 'Percobaan 1',
-		category: 'Pendidikan',
+		category: 'Pend_idikan',
 		author: 'Budi',
 	},
 	{
 		thumbnail:
 			'https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1600',
 		title: 'Percobaan 1',
-		category: 'Pendidikan',
+		category: 'Pend_idikan',
 		author: 'Budi',
 	},
 	{
 		thumbnail:
 			'https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1600',
 		title: 'Percobaan 1',
-		category: 'Pendidikan',
+		category: 'Pend_idikan',
 		author: 'Budi',
 	},
 	{
 		thumbnail:
 			'https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1600',
 		title: 'Percobaan 1',
-		category: 'Pendidikan',
+		category: 'Pend_idikan',
 		author: 'Budi',
 	},
 	{
 		thumbnail:
 			'https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1600',
 		title: 'Percobaan 1',
-		category: 'Pendidikan',
+		category: 'Pend_idikan',
 		author: 'Budi',
 	},
 	{
 		thumbnail:
 			'https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1600',
 		title: 'Percobaan 1',
-		category: 'Pendidikan',
+		category: 'Pend_idikan',
 		author: 'Budi',
 	},
 ];

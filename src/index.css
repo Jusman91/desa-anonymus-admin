@@ -7,7 +7,7 @@
 		@apply box-border list-none p-0 m-0 scroll-smooth;
 	}
 	body {
-		@apply min-h-screen font-raleway container max-w-[1440px] mx-auto;
+		@apply min-h-screen font-raleway container max-w-[1600px] mx-auto;
 	}
 	h1,
 	h2,

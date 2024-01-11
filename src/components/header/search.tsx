@@ -1,5 +1,5 @@
 import { useToggle } from '@/hooks/use-toggle';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/utils';
 import { Flex, Input } from 'antd';
 import { IoSearchCircleSharp } from 'react-icons/io5';
 import Icon from '../elements/icon';

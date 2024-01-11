@@ -1,8 +1,8 @@
 import { Avatar, Flex } from 'antd';
 import DEFAULT_PROFILE from '@/assets/img/user_default.jpg';
 import { useMenuCollapseContext } from '@/hooks/use-context';
-import { cn } from '@/lib/utils';
-import { getUser } from '@/utils/handle-session';
+import { cn } from '@/lib/utils/utils';
+import { getUser } from '@/handlers/handle-session';
 
 const ProfileAdmin = () => {
 	const { collapse } = useMenuCollapseContext();

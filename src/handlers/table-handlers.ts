@@ -35,15 +35,21 @@ export const handleTableChange = <T extends object>({
 		setSortQuery(singleSorter);
 	}
 
-	if (filters?.inStock !== null) {
+	if (
+		filters &&
+		filters?.inStock !== null &&
+		setInStockQuery
+	) {
 		setInStockQuery(filters?.inStock as unknown as string);
 	} else {
 		deleteQuery('inStock');
 	}
 
 	if (
+		filters &&
 		filters?.category !== null &&
-		filters?.category?.length > 0
+		filters?.category?.length > 0 &&
+		setCategoryQuery
 	) {
 		const queryCategory = filters?.category[0];
 		setCategoryQuery(queryCategory as string);

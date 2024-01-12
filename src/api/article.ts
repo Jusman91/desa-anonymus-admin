@@ -1,17 +1,17 @@
+import axios from 'axios';
 import axiosInstance from '@/lib/axios/axios-instance';
 import {
-	ICreateProduct,
+	IArticle,
+	ICreateArticle,
 	IFnParams,
-	IProduct,
 	IResponseError,
 	IResponseSuccess,
-	IUpdateProductFnProps,
+	IUpdateArticleFnProps,
 } from '@/types';
-import axios from 'axios';
 
-export async function getProductsFn(params: IFnParams) {
+export async function getArticlesFn(params: IFnParams) {
 	try {
-		const { data } = await axiosInstance.get('/products', {
+		const { data } = await axiosInstance.get('/articles', {
 			params,
 		});
 		return data as IResponseSuccess;
@@ -22,12 +22,12 @@ export async function getProductsFn(params: IFnParams) {
 	}
 }
 
-export async function getProductFn(id: string) {
+export async function getArticleFn(id: string) {
 	try {
 		const { data } = await axiosInstance.get(
-			`/products/${id}`,
+			`/articles/${id}`,
 		);
-		return data as IProduct;
+		return data as IArticle;
 	} catch (error) {
 		if (axios.isAxiosError<IResponseError>(error)) {
 			throw error.response?.data;
@@ -35,13 +35,13 @@ export async function getProductFn(id: string) {
 	}
 }
 
-export async function createProductFn(
-	newProduct: ICreateProduct,
+export async function createArticleFn(
+	newArticle: ICreateArticle,
 ) {
 	try {
 		const { data } = await axiosInstance.post(
-			'/products',
-			newProduct,
+			'/articles',
+			newArticle,
 		);
 		return data;
 	} catch (error) {
@@ -51,13 +51,13 @@ export async function createProductFn(
 	}
 }
 
-export async function upadateProductFn({
+export async function upadateArticleFn({
 	id,
 	formData,
-}: IUpdateProductFnProps) {
+}: IUpdateArticleFnProps) {
 	try {
 		const { data } = await axiosInstance.put(
-			`/products/${id}`,
+			`/articles/${id}`,
 			formData,
 		);
 		return data;
@@ -68,10 +68,10 @@ export async function upadateProductFn({
 	}
 }
 
-export async function deleteProductFn(id: string) {
+export async function deleteArticleFn(id: string) {
 	try {
 		const { data } = await axiosInstance.delete(
-			`/products/${id}`,
+			`/articles/${id}`,
 		);
 		return data;
 	} catch (error) {

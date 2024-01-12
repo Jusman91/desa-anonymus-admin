@@ -1,5 +1,4 @@
 import DataTable from '@/components/table/data-table';
-import { TableColumns } from '@/components/table/table-columns';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
 import { useGetProducts } from '@/lib/react-query/querys-mutations-product';
 import { IProduct } from '@/types';
@@ -9,9 +8,10 @@ import type {
 	SorterResult,
 	TablePaginationConfig,
 } from 'antd/es/table/interface';
+import TableColumnProduct from '@/components/table/table-column-product';
 
 const Products = () => {
-	const { columnProduct } = TableColumns();
+	const { columnProduct } = TableColumnProduct();
 	const {
 		page,
 		limit,

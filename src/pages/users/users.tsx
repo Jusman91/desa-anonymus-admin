@@ -5,13 +5,13 @@ import type {
 	SorterResult,
 	TablePaginationConfig,
 } from 'antd/es/table/interface';
-import { TableColumns } from '@/components/table/table-columns';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
 import DataTable from '@/components/table/data-table';
 import { handleTableChange } from '@/handlers/table-handlers';
+import TableColumnUser from '@/components/table/table-column-user';
 
 const Users = () => {
-	const { columnUser } = TableColumns();
+	const { columnUser } = TableColumnUser();
 	const {
 		page,
 		limit,
@@ -20,6 +20,7 @@ const Users = () => {
 		setPageQuery,
 		setLimitQuery,
 		setSortQuery,
+		deleteQuery,
 	} = useSearchParamsQuery();
 	const { data, isFetching, isLoading } = useGetUsers({
 		page,
@@ -42,6 +43,7 @@ const Users = () => {
 			setLimitQuery,
 			setPageQuery,
 			setSortQuery,
+			deleteQuery,
 		});
 	};
 

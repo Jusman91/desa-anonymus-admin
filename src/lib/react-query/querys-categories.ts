@@ -1,24 +1,11 @@
-import {
-	getCategoriesArticleFn,
-	getCategoriesProductFn,
-} from '@/api/categories';
+import { getCategoriesFn } from '@/api/categories';
 import { key } from '@/static/key';
 import { useQuery } from '@tanstack/react-query';
 
-export function useGetCategoriesProduct() {
+export function useGetCategories(url: string) {
 	const query = useQuery({
-		queryKey: [key.QUERY_KEY_CATEGORIES_PRODUCT],
-		queryFn: getCategoriesProductFn,
-		refetchOnWindowFocus: false,
-	});
-
-	return query;
-}
-
-export function useGetCategoriesArticle() {
-	const query = useQuery({
-		queryKey: [key.QUERY_KEY_CATEGORIES_ARTICLE],
-		queryFn: getCategoriesArticleFn,
+		queryKey: [key.QUERY_KEY_CATEGORIES],
+		queryFn: () => getCategoriesFn(url),
 		refetchOnWindowFocus: false,
 	});
 

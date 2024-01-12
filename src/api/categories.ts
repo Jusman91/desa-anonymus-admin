@@ -1,20 +1,9 @@
 import axiosInstance from '@/lib/axios/axios-instance';
 
-export async function getCategoriesProductFn() {
+export async function getCategoriesFn(url: string) {
 	try {
 		const { data } = await axiosInstance.get(
-			'/categories/product',
-		);
-		return data;
-	} catch (error) {
-		console.log(error);
-	}
-}
-
-export async function getCategoriesArticleFn() {
-	try {
-		const { data } = await axiosInstance.get(
-			'/categories/article',
+			`/categories/${url}`,
 		);
 		return data;
 	} catch (error) {

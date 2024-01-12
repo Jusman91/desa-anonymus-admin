@@ -70,6 +70,28 @@ export interface IMenus {
 	onClick: MenuProps['onClick'];
 }
 
+// api
+export interface IFnParams {
+	page: number;
+	sort: string | undefined;
+	limit: number;
+	search: string | undefined;
+	inStock?: boolean | undefined;
+	category?: string | undefined;
+}
+export interface IResponseSuccess {
+	data: [];
+	limit: number;
+	page: number;
+	pageCount: number;
+	totalData: number;
+}
+export interface IResponseError extends AxiosError {
+	message: string;
+	status: number;
+}
+// end api
+
 // home
 export interface ISmallTtitle {
 	title: string;
@@ -165,6 +187,30 @@ export interface IUpdateProductFnProps {
 }
 // end product
 
+// article
+export interface ICreateArticle {
+	title: string;
+	author: string;
+	thumbnail: string;
+	description: string;
+	category: string;
+	content: string;
+	tags: string[];
+	likes: IUser['_id'][];
+}
+export interface IArticle extends ICreateArticle {
+	_id: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+}
+
+export interface IUpdateArticleFnProps {
+	id: string;
+	formData: ICreateArticle;
+}
+// end article
+
 // table
 export type DataIndex<T> = keyof T;
 export interface IDataTableProps<T> {
@@ -180,68 +226,23 @@ export interface IDataTableProps<T> {
 }
 export interface IHandleTableChangeProps<T> {
 	pagination: TablePaginationConfig;
-	filters: Record<string, FilterValue | null>;
+	filters?: Record<string, FilterValue | null>;
 	sorter: SorterResult<T> | SorterResult<T>[];
 	setPageQuery: (page: string) => void;
 	setSortQuery: (sort: string) => void;
 	setLimitQuery: (limit: string) => void;
-	setInStockQuery: (inStock: string) => void;
-	setCategoryQuery: (category: string) => void;
+	setInStockQuery?: (inStock: string) => void;
+	setCategoryQuery?: (category: string) => void;
 	deleteQuery: (query: string) => void;
 }
-// export interface IHandleTableChangeProps<T> {
-// 	pagination: TablePaginationConfig;
-// 	filters?: Record<string, FilterValue | null>;
-// 	sorter: SorterResult<T> | SorterResult<T>[];
-// 	setPageQuery: (page: string) => void;
-// 	setSortQuery: (sort: string) => void;
-// 	setLimitQuery: (limit: string) => void;
-// 	setInStockQuery: (inStock: string) => void;
-// 	deleteQuery: (query: string) => void;
-// }
+
 export interface ColumnSearchInputProps extends InputProps {
 	dataIndex: string;
 	onPressEnter: () => void;
 }
 // end table
-export interface IFnParams {
-	page: number;
-	sort: string | undefined;
-	limit: number;
-	search: string | undefined;
-	inStock: boolean | undefined;
-	category: string | undefined;
-}
-
-// api
-export interface IResponseSuccess {
-	data: [];
-	limit: number;
-	page: number;
-	pageCount: number;
-	totalData: number;
-}
-export interface IResponseError extends AxiosError {
-	message: string;
-	status: number;
-}
-// end api
 export type MessageType =
 	| 'success'
 	| 'info'
 	| 'warning'
 	| 'error';
-
-export interface IArticle {
-	key: string;
-	_id: string;
-	title: string;
-	author: string;
-	description: string;
-	thumbnail: string;
-	category: string;
-	content: string;
-	createdAt: string;
-	updatedAt: string;
-	__v: number;
-}

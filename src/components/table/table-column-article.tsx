@@ -3,14 +3,13 @@ import { Avatar, Space } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import DEFAULT_THUMBNAIL from '@/assets/img/default_thumbnail.png';
 import ColumnSearch from './get-column-search';
-import { TableColumFilterObj } from './get-table-column-filter';
+import { ColumFilter } from './get-column-filter';
 import { formatDate } from '@/lib/utils/utils';
 import Button from '../elements/button';
 
 const TableColumnArticle = () => {
 	const getColumnSearchProps = ColumnSearch();
-	const { filterObjCategory } =
-		TableColumFilterObj('article');
+	const { filterObjCategory } = ColumFilter('article');
 	const columnArticle: ColumnsType<IArticle> = [
 		{
 			title: 'Thumbnail',
@@ -36,7 +35,7 @@ const TableColumnArticle = () => {
 			sorter: {
 				multiple: 3,
 			},
-			sortDirections: ['descend', 'ascend'],
+			sortDirections: ['ascend', 'descend'],
 		},
 		{
 			title: 'Author',
@@ -48,7 +47,7 @@ const TableColumnArticle = () => {
 			sorter: {
 				multiple: 2,
 			},
-			sortDirections: ['descend', 'ascend'],
+			sortDirections: ['ascend', 'descend'],
 		},
 		{
 			title: 'Category',
@@ -77,7 +76,7 @@ const TableColumnArticle = () => {
 			sorter: {
 				multiple: 1,
 			},
-			sortDirections: ['descend', 'ascend'],
+			sortDirections: ['ascend', 'descend'],
 		},
 		{
 			title: 'Action',

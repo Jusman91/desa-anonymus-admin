@@ -8,6 +8,7 @@ import type {
 	TablePaginationConfig,
 } from 'antd/es/table';
 import type {
+	FilterConfirmProps,
 	FilterValue,
 	SorterResult,
 } from 'antd/es/table/interface';
@@ -31,9 +32,7 @@ export type MenuItems =
 	Required<MenuProps>['items'][number];
 
 export interface IOnClick {
-	onClick: (
-		ev: React.MouseEvent<HTMLButtonElement>,
-	) => void;
+	onClick: () => void;
 }
 
 // auth
@@ -71,6 +70,14 @@ export interface IMenus {
 }
 
 // api
+export type QueryParams =
+	| 'page'
+	| 'limit'
+	| 'sort'
+	| 'search'
+	| 'category'
+	| 'inStock'
+	| 'price';
 export interface IFnParams {
 	page: number;
 	sort: string | undefined;
@@ -218,6 +225,7 @@ export interface IDataTableProps<T> {
 	columns: ColumnsType<T>;
 	totalData: number;
 	loading: boolean;
+	addData: string;
 	onChange: (
 		pagination: TablePaginationConfig,
 		filters: Record<string, FilterValue | null>,
@@ -228,17 +236,29 @@ export interface IHandleTableChangeProps<T> {
 	pagination: TablePaginationConfig;
 	filters?: Record<string, FilterValue | null>;
 	sorter: SorterResult<T> | SorterResult<T>[];
-	setPageQuery: (page: string) => void;
-	setSortQuery: (sort: string) => void;
-	setLimitQuery: (limit: string) => void;
-	setInStockQuery?: (inStock: string) => void;
-	setCategoryQuery?: (category: string) => void;
-	deleteQuery: (query: string) => void;
 }
-
-export interface ColumnSearchInputProps extends InputProps {
+export interface IColumnSearchInputProps
+	extends InputProps {
+	selectedKeys: string[];
+	setSelectedKeys: (keys: string[]) => void;
+}
+export interface IHandleColumnSearchProps {
+	selectedKeys: string[];
+	confirm: (param?: FilterConfirmProps) => void;
 	dataIndex: string;
-	onPressEnter: () => void;
+	setSearchedColumn: (index: string) => void;
+}
+export interface IHandleTableGlobalResetProps {
+	deleteAllQuerys: () => void;
+}
+// export interface IColumnResetButtonProps {
+// 	clearFilters?: () => void;
+// }
+export interface IHandleColumnResetProps {
+	clearFilters: () => void;
+}
+export interface IHandleColumnCloseProps {
+	close: () => void;
 }
 // end table
 export type MessageType =

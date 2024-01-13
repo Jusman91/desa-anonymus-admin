@@ -1,7 +1,7 @@
 import DataTable from '@/components/table/data-table';
 import TableColumnArticle from '@/components/table/table-column-article';
-import { handleTableChange } from '@/handlers/table-handlers';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
+import { useTableHandlers } from '@/hooks/use-table-handlers';
 import { useGetArticles } from '@/lib/react-query/querys-mutations-article';
 import { IArticle } from '@/types';
 import type {
@@ -12,18 +12,9 @@ import type {
 
 const Articles = () => {
 	const { columnArticle } = TableColumnArticle();
-	const {
-		page,
-		limit,
-		sort,
-		search,
-		category,
-		setPageQuery,
-		setLimitQuery,
-		setSortQuery,
-		setCategoryQuery,
-		deleteQuery,
-	} = useSearchParamsQuery();
+	const { handleTableChange } = useTableHandlers();
+	const { page, limit, sort, search, category } =
+		useSearchParamsQuery();
 	const { data, isFetching, isLoading } = useGetArticles({
 		page,
 		limit,
@@ -45,11 +36,6 @@ const Articles = () => {
 			pagination,
 			sorter,
 			filters,
-			setLimitQuery,
-			setPageQuery,
-			setSortQuery,
-			setCategoryQuery,
-			deleteQuery,
 		});
 	};
 	return (
@@ -59,6 +45,7 @@ const Articles = () => {
 			totalData={totalData as number}
 			loading={loading}
 			onChange={handleTableChangeArticle}
+			addData='articles'
 		/>
 	);
 };

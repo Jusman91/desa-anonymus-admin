@@ -1,4 +1,5 @@
 import { getInStock } from '@/lib/utils/utils';
+import { QueryParams } from '@/types';
 import { useSearchParams } from 'react-router-dom';
 
 export function useSearchParamsQuery() {
@@ -75,11 +76,15 @@ export function useSearchParamsQuery() {
 		});
 	};
 
-	const deleteQuery = (query: string) => {
+	const deleteQuery = (query: QueryParams) => {
 		setSearchParams((prevSearchParams) => {
 			prevSearchParams.delete(query);
 			return prevSearchParams;
 		});
+	};
+
+	const deleteAllQuerys = () => {
+		setSearchParams(new URLSearchParams());
 	};
 
 	return {
@@ -96,5 +101,6 @@ export function useSearchParamsQuery() {
 		setInStockQuery,
 		setCategoryQuery,
 		deleteQuery,
+		deleteAllQuerys,
 	};
 }

@@ -1,7 +1,7 @@
 import { useGetCategories } from '@/lib/react-query/querys-categories';
 import { ColumnFilterItem } from 'antd/es/table/interface';
 
-export const TableColumFilterObj = (url: string) => {
+export const ColumFilter = (url: string) => {
 	const { data: categories } = useGetCategories(url);
 	const filterObjCategory = {
 		filters: categories?.map(

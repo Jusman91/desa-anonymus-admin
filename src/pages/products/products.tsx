@@ -2,30 +2,19 @@ import DataTable from '@/components/table/data-table';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
 import { useGetProducts } from '@/lib/react-query/querys-mutations-product';
 import { IProduct } from '@/types';
-import { handleTableChange } from '@/handlers/table-handlers';
 import type {
 	FilterValue,
 	SorterResult,
 	TablePaginationConfig,
 } from 'antd/es/table/interface';
 import TableColumnProduct from '@/components/table/table-column-product';
+import { useTableHandlers } from '@/hooks/use-table-handlers';
 
 const Products = () => {
 	const { columnProduct } = TableColumnProduct();
-	const {
-		page,
-		limit,
-		sort,
-		search,
-		inStock,
-		category,
-		setPageQuery,
-		setLimitQuery,
-		setSortQuery,
-		setInStockQuery,
-		setCategoryQuery,
-		deleteQuery,
-	} = useSearchParamsQuery();
+	const { handleTableChange } = useTableHandlers();
+	const { page, limit, sort, search, inStock, category } =
+		useSearchParamsQuery();
 	const { data, isFetching, isLoading } = useGetProducts({
 		page,
 		limit,
@@ -50,12 +39,6 @@ const Products = () => {
 			pagination,
 			sorter,
 			filters,
-			setLimitQuery,
-			setPageQuery,
-			setSortQuery,
-			setInStockQuery,
-			setCategoryQuery,
-			deleteQuery,
 		});
 	};
 
@@ -66,6 +49,7 @@ const Products = () => {
 			totalData={totalData as number}
 			loading={loading}
 			onChange={handleTableChangeProduct}
+			addData='products'
 		/>
 	);
 };

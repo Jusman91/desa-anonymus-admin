@@ -3,14 +3,14 @@ import { Avatar, Space } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import DEFAULT_THUMBNAIL from '@/assets/img/default_thumbnail.png';
 import ColumnSearch from './get-column-search';
-import { TableColumFilterObj } from './get-table-column-filter';
+import { ColumFilter } from './get-column-filter';
 import { formatDate } from '@/lib/utils/utils';
 import Button from '../elements/button';
 
 const TableColumnProduct = () => {
 	const getColumnSearchProps = ColumnSearch();
 	const { filterObjCategory, filterObjInStock } =
-		TableColumFilterObj('product');
+		ColumFilter('product');
 	const columnProduct: ColumnsType<IProduct> = [
 		{
 			title: 'Thumbnail',
@@ -36,7 +36,7 @@ const TableColumnProduct = () => {
 			sorter: {
 				multiple: 3,
 			},
-			sortDirections: ['descend', 'ascend'],
+			sortDirections: ['ascend', 'descend'],
 		},
 		{
 			title: 'Price',
@@ -48,7 +48,7 @@ const TableColumnProduct = () => {
 				compare: (a, b) => a.price - b.price,
 				multiple: 2,
 			},
-			sortDirections: ['descend', 'ascend'],
+			sortDirections: ['ascend', 'descend'],
 		},
 		{
 			title: 'Category',
@@ -113,7 +113,7 @@ const TableColumnProduct = () => {
 			sorter: {
 				multiple: 1,
 			},
-			sortDirections: ['descend', 'ascend'],
+			sortDirections: ['ascend', 'descend'],
 		},
 		{
 			title: 'Action',

@@ -2,6 +2,7 @@ import { MdSearch } from 'react-icons/md';
 import Button from '../elements/button';
 import Icon from '../elements/icon';
 import { IOnClick } from '@/types';
+import { useTableHandlers } from '@/hooks/use-table-handlers';
 
 export const ColumnSearchButton = ({
 	onClick,
@@ -42,6 +43,18 @@ export const ColumnCloseButton = ({
 			onClick={onClick}
 			className='text-xs'>
 			Close
+		</Button>
+	);
+};
+
+export const GlobalResetButton = () => {
+	const { handleGlobalReset } = useTableHandlers();
+	return (
+		<Button
+			type='primary'
+			size='small'
+			onClick={handleGlobalReset}>
+			Reset
 		</Button>
 	);
 };

@@ -7,21 +7,14 @@ import type {
 } from 'antd/es/table/interface';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
 import DataTable from '@/components/table/data-table';
-import { handleTableChange } from '@/handlers/table-handlers';
 import TableColumnUser from '@/components/table/table-column-user';
+import { useTableHandlers } from '@/hooks/use-table-handlers';
 
 const Users = () => {
 	const { columnUser } = TableColumnUser();
-	const {
-		page,
-		limit,
-		sort,
-		search,
-		setPageQuery,
-		setLimitQuery,
-		setSortQuery,
-		deleteQuery,
-	} = useSearchParamsQuery();
+	const { handleTableChange } = useTableHandlers();
+	const { page, limit, sort, search } =
+		useSearchParamsQuery();
 	const { data, isFetching, isLoading } = useGetUsers({
 		page,
 		limit,
@@ -40,10 +33,6 @@ const Users = () => {
 		handleTableChange<IUser>({
 			pagination,
 			sorter,
-			setLimitQuery,
-			setPageQuery,
-			setSortQuery,
-			deleteQuery,
 		});
 	};
 
@@ -54,6 +43,7 @@ const Users = () => {
 			totalData={totalData as number}
 			loading={loading}
 			onChange={handleTableChangeUser}
+			addData='users'
 		/>
 	);
 };

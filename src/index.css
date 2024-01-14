@@ -3,6 +3,14 @@
 @tailwind base;
 
 @layer base {
+	:root {
+		--bg-container: 198 32% 100%;
+		--color-primary: 191 81% 19%;
+	}
+	:root[data-theme='dark'] {
+		--bg-container: 198 32% 14%;
+		--color-primary: 191 81% 19%;
+	}
 	* {
 		@apply box-border list-none p-0 m-0 scroll-smooth;
 	}

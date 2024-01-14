@@ -25,7 +25,7 @@ const DataTable = <T extends object>(
 			<div className='flex justify-between items-center pb-1'>
 				<Link
 					to={`/${addData}/create`}
-					className='flex items-center text-white hover:text-red-500'>
+					className='flex items-center'>
 					<Icon>{<MdAddCircle />}</Icon>
 					Add
 				</Link>

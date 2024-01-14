@@ -1,4 +1,5 @@
 export const key = {
+	THEME_SESSION_STORAGE_KEY: 'theme',
 	QUERY_KEY_LOGIN: 'logged-in',
 	MUTATION_KEY_LOGIN: 'login',
 	ACCESS_TOKEN_SESSION_STORAGE_KEY: 'accessToken',

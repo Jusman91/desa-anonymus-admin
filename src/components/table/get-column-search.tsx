@@ -1,5 +1,5 @@
 import { DataIndex } from '@/types';
-import { Space } from 'antd';
+import { Flex } from 'antd';
 import type { ColumnType } from 'antd/es/table';
 import { useRef, useState } from 'react';
 import type { InputRef } from 'antd';
@@ -52,7 +52,7 @@ const ColumnSearch = () => {
 						})
 					}
 				/>
-				<Space>
+				<Flex justify='flex-start' align='center' gap={8}>
 					<ColumnSearchButton
 						onClick={() =>
 							handleColumnSearch({
@@ -72,7 +72,7 @@ const ColumnSearch = () => {
 					<ColumnCloseButton
 						onClick={() => handleColumnClose({ close })}
 					/>
-				</Space>
+				</Flex>
 			</div>
 		),
 		filterIcon: (filtered) => (

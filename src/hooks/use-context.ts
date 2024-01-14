@@ -1,9 +1,11 @@
 import { AuthFormContext } from '@/contexts/auth-form-context';
 import { MenuCollapseContext } from '@/contexts/menu-collapse-context';
+import { ThemeContext } from '@/contexts/theme-context';
 import {
 	IAuthFormContextProps,
 	ICollapseProps,
 	IErrorUseContext,
+	IThemeContext,
 } from '@/types';
 import { useContext } from 'react';
 
@@ -17,6 +19,12 @@ const throwError = ({
 		);
 	}
 };
+
+export function useThemeContext(): IThemeContext {
+	const context = useContext(ThemeContext);
+	throwError({ context, message: 'ThemeContext' });
+	return context as IThemeContext;
+}
 
 export function useMenuCollapseContext(): ICollapseProps {
 	const context = useContext(MenuCollapseContext);

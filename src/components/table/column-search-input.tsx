@@ -3,7 +3,6 @@ import { forwardRef } from 'react';
 import type { InputRef } from 'antd';
 import { IColumnSearchInputProps } from '@/types';
 import { useTableHandlers } from '@/hooks/use-table-handlers';
-// import { HandleGlobalSearch } from '@/handlers/table-handlers';
 
 export const ColumnSearchInput = forwardRef<
 	InputRef,
@@ -11,7 +10,7 @@ export const ColumnSearchInput = forwardRef<
 >(({ selectedKeys, setSelectedKeys, ...rest }, ref) => {
 	return (
 		<Input
-			className='mb-2 block'
+			className='mb-2 block text-xs'
 			ref={ref}
 			value={
 				selectedKeys.length > 0

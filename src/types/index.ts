@@ -30,7 +30,10 @@ export type OnPressEnter =
 
 export type MenuItems =
 	Required<MenuProps>['items'][number];
-
+export interface IThemeContext {
+	myTheme: string;
+	toggleMyTheme: () => void;
+}
 export interface IOnClick {
 	onClick: () => void;
 }

@@ -1,6 +1,19 @@
 import { key } from '@/static/key';
 import { IUser } from '@/types';
 
+export function saveTheme(theme: string) {
+	return sessionStorage.setItem(
+		key.THEME_SESSION_STORAGE_KEY,
+		theme,
+	);
+}
+
+export function getTheme() {
+	return sessionStorage.getItem(
+		key.THEME_SESSION_STORAGE_KEY,
+	);
+}
+
 export function saveAccessToken(accessToken: string) {
 	return sessionStorage.setItem(
 		key.ACCESS_TOKEN_SESSION_STORAGE_KEY,

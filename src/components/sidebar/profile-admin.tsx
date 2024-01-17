@@ -18,7 +18,7 @@ const ProfileAdmin = () => {
 				vertical
 				className={cn(
 					collapse ? 'w-0 opacity-0' : 'w-fit opacit-100',
-					'transition-all duration-300 text-white font-semibold',
+					'transition-all duration-300 text-color-base font-semibold',
 				)}>
 				<small className='text-xs leading-none'>
 					{username}

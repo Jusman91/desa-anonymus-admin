@@ -4,10 +4,14 @@
 
 @layer base {
 	:root {
+		--bg-base: 198 31% 6%;
+		--color-base: 0 0% 0%;
 		--bg-container: 198 32% 100%;
 		--color-primary: 191 81% 19%;
 	}
 	:root[data-theme='dark'] {
+		--bg-base: 198 31% 96%;
+		--color-base: 0 0% 100%;
 		--bg-container: 198 32% 14%;
 		--color-primary: 191 81% 19%;
 	}
@@ -15,7 +19,7 @@
 		@apply box-border list-none p-0 m-0 scroll-smooth;
 	}
 	body {
-		@apply min-h-screen font-raleway container max-w-[1600px] mx-auto;
+		@apply min-h-screen font-raleway container max-w-full mx-auto;
 	}
 	h1,
 	h2,

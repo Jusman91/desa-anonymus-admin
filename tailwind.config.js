@@ -15,9 +15,12 @@ export default {
 				raleway: ['Raleway', 'sans-serif'],
 			},
 			colors: {
+				'color-base':
+					'hsl(var(--color-base) / <alpha-value>)',
 				primary:
 					'hsl(var(--color-primary) / <alpha-value>)',
 				bkg: {
+					base: 'hsl(var(--bg-base) / <alpha-value>)',
 					container:
 						'hsl(var(--bg-container) / <alpha-value>)',
 				},
@@ -34,5 +37,6 @@ export default {
 			},
 		},
 	},
+	darkMode: ['class', '[data-theme="dark"]'],
 	plugins: [],
 };

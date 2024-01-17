@@ -54,9 +54,15 @@ const Routes = () => {
 						{
 							path: '',
 							element: <Users />,
+							children: [
+								{
+									path: ':id/delete',
+									element: <DeleteUser />,
+								},
+							],
 						},
 						{
-							path: 'details/:id',
+							path: ':id/details',
 							element: <SingleUser />,
 						},
 						{
@@ -64,15 +70,12 @@ const Routes = () => {
 							element: <CreateUser />,
 						},
 						{
-							path: 'edit/:id',
+							path: ':id/edit',
 							element: <UpdateUser />,
-						},
-						{
-							path: 'delete/:id',
-							element: <DeleteUser />,
 						},
 					],
 				},
+
 				{
 					path: 'articles',
 					element: <ArticlesLayout />,
@@ -82,7 +85,7 @@ const Routes = () => {
 							element: <Articles />,
 						},
 						{
-							path: 'details/:id',
+							path: ':id/details',
 							element: <SingleArticle />,
 						},
 						{
@@ -90,11 +93,11 @@ const Routes = () => {
 							element: <CreateArticle />,
 						},
 						{
-							path: 'edit/:id',
+							path: ':id/edit',
 							element: <UpdateArticle />,
 						},
 						{
-							path: 'delete/:id',
+							path: ':id/delete',
 							element: <DeleteArticle />,
 						},
 					],
@@ -108,7 +111,7 @@ const Routes = () => {
 							element: <Products />,
 						},
 						{
-							path: 'details/:id',
+							path: ':id/details',
 							element: <SingleProduct />,
 						},
 						{
@@ -116,11 +119,11 @@ const Routes = () => {
 							element: <CreateProduct />,
 						},
 						{
-							path: 'edit/:id',
+							path: ':id/',
 							element: <UpdateProduct />,
 						},
 						{
-							path: 'delete/:id',
+							path: ':id/delete',
 							element: <DeleteProduct />,
 						},
 					],

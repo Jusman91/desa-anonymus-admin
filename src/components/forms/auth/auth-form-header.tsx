@@ -9,7 +9,7 @@ const AuthFormHeader = () => {
 			align='center'
 			gap={10}
 			className='mb-4'>
-			<CustomTypography className='text-center'>
+			<CustomTypography className='text-center text-white'>
 				Login
 			</CustomTypography>
 			<img src={ICON_HEADER_AUTH} alt='Icon Login' />

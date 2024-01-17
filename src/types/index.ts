@@ -12,7 +12,7 @@ import type {
 	FilterValue,
 	SorterResult,
 } from 'antd/es/table/interface';
-import type { InputProps } from 'antd';
+import type { FormInstance, InputProps } from 'antd';
 
 export type DivElement =
 	React.HTMLAttributes<HTMLDivElement>;
@@ -21,12 +21,12 @@ export type TypogaraphyElement =
 	React.HTMLAttributes<HTMLHeadingElement>;
 
 export type InputChange =
-	| React.ChangeEventHandler<HTMLInputElement>
-	| undefined;
+	React.ChangeEventHandler<HTMLInputElement>;
 
 export type OnPressEnter =
-	| React.KeyboardEventHandler<HTMLInputElement>
-	| undefined;
+	React.KeyboardEventHandler<HTMLInputElement>;
+
+export type FormSubmit = React.FormEvent<HTMLFormElement>;
 
 export type MenuItems =
 	Required<MenuProps>['items'][number];
@@ -146,6 +146,21 @@ export interface INewDataProps {
 // end home
 
 // user
+export type UserFormNameProps =
+	| 'create-user'
+	| 'update-user';
+export interface IUserFormContext {
+	form: FormInstance;
+	handleSubmit: (value: ICreateUser | IUpdateUser) => void;
+	createUserIsPending: boolean;
+	updateUserIsPending: boolean;
+	setFormName: (value: UserFormNameProps) => void;
+	formName: string;
+	id: string;
+	setId: (value: string) => void;
+	open: boolean;
+	setOpen: (value: boolean) => void;
+}
 export interface ICreateUser {
 	username: string;
 	email: string;
@@ -153,7 +168,6 @@ export interface ICreateUser {
 	role: string;
 }
 export interface IUser {
-	key: string;
 	_id: string;
 	username: string;
 	email: string;
@@ -168,9 +182,25 @@ export interface IUpdateUser {
 	role: string;
 	profilePic: string;
 }
-export interface IUpdateUserFnProps {
+export interface IUpdateUserFnParams {
 	id: string;
 	formData: IUpdateUser;
+}
+export interface IRulesFormUser {
+	username: Rule[];
+	email: Rule[];
+	password: Rule[];
+	profilePic?: Rule[];
+}
+export interface IUsersContext {
+	id: string;
+	setId: (id: string) => void;
+	isOpenModal: boolean;
+	setIsOpenModal: (isOpenModal: boolean) => void;
+	users: IUser[] | undefined;
+	totalData?: number;
+	isLoading?: boolean;
+	isFetching?: boolean;
 }
 // end user
 
@@ -214,7 +244,6 @@ export interface IArticle extends ICreateArticle {
 	updatedAt: string;
 	__v: number;
 }
-
 export interface IUpdateArticleFnProps {
 	id: string;
 	formData: ICreateArticle;
@@ -227,7 +256,7 @@ export interface IDataTableProps<T> {
 	data: T[];
 	columns: ColumnsType<T>;
 	totalData: number;
-	loading: boolean;
+	loading: boolean | undefined;
 	addData: string;
 	onChange: (
 		pagination: TablePaginationConfig,
@@ -254,9 +283,6 @@ export interface IHandleColumnSearchProps {
 export interface IHandleTableGlobalResetProps {
 	deleteAllQuerys: () => void;
 }
-// export interface IColumnResetButtonProps {
-// 	clearFilters?: () => void;
-// }
 export interface IHandleColumnResetProps {
 	clearFilters: () => void;
 }

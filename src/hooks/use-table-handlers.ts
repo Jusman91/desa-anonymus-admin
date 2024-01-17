@@ -6,6 +6,7 @@ import {
 	IHandleColumnSearchProps,
 	IHandleTableChangeProps,
 } from '@/types';
+import { useUserFormContext } from './use-context';
 
 export function useTableHandlers() {
 	const {
@@ -18,6 +19,7 @@ export function useTableHandlers() {
 		deleteQuery,
 		deleteAllQuerys,
 	} = useSearchParamsQuery();
+	const { setId, setOpen } = useUserFormContext();
 
 	const handleTableChange = <T>({
 		pagination,
@@ -121,6 +123,11 @@ export function useTableHandlers() {
 		close();
 	};
 
+	const handleButtonDeleteClick = (userId: string) => {
+		setId(userId);
+		setOpen(true);
+	};
+
 	return {
 		handleTableChange,
 		handleGlobalSearch,
@@ -128,5 +135,6 @@ export function useTableHandlers() {
 		handleColumnSearch,
 		handleColumnReset,
 		handleColumnClose,
+		handleButtonDeleteClick,
 	};
 }

@@ -4,7 +4,8 @@ import {
 	IFnParams,
 	IResponseError,
 	IResponseSuccess,
-	IUpdateUserFnProps,
+	IUpdateUserFnParams,
+	IUser,
 } from '@/types';
 import axios from 'axios';
 
@@ -26,7 +27,7 @@ export async function getUserFn(userId: string) {
 		const { data } = await axiosInstance.get(
 			`/users/${userId}`,
 		);
-		return data;
+		return data as IUser;
 	} catch (error) {
 		if (axios.isAxiosError<IResponseError>(error)) {
 			throw error.response?.data;
@@ -51,7 +52,7 @@ export async function createUserFn(newUser: ICreateUser) {
 export async function upadateUserFn({
 	id,
 	formData,
-}: IUpdateUserFnProps) {
+}: IUpdateUserFnParams) {
 	try {
 		const { data } = await axiosInstance.put(
 			`/users/${id}`,

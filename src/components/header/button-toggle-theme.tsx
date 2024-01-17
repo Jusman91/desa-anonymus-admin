@@ -7,10 +7,11 @@ import {
 import { useThemeContext } from '@/hooks/use-context';
 
 const ButtonToggleTheme = () => {
-	const { toggleMyTheme } = useThemeContext();
+	const { myTheme, toggleMyTheme } = useThemeContext();
 	return (
 		<Switch
 			size='small'
+			checked={myTheme === 'dark'}
 			checkedChildren={
 				<Icon>
 					<MdDarkMode />

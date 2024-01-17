@@ -33,5 +33,24 @@ export function useTheme() {
 			myTheme === 'dark' ? darkAlgorithm : defaultAlgorithm,
 	};
 
-	return { rootTheme };
+	const authTheme: ThemeConfig = {
+		token: {
+			colorBgBase: '#192930',
+			colorError: '#f52629',
+			fontSize: 14,
+			borderRadius: 12,
+			colorPrimary: '#094a58',
+		},
+		components: {
+			Input: {
+				colorBgContainer: '#fff',
+				colorTextPlaceholder: '#6b6b6b',
+			},
+			Form: {
+				labelColor: '#fff',
+			},
+		},
+	};
+
+	return { rootTheme, authTheme };
 }

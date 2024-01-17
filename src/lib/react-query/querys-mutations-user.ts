@@ -11,7 +11,7 @@ import {
 	ICreateUser,
 	IFnParams,
 	IResponseError,
-	IUpdateUserFnProps,
+	IUpdateUserFnParams,
 } from '@/types';
 import {
 	keepPreviousData,
@@ -20,12 +20,16 @@ import {
 	useQueryClient,
 } from '@tanstack/react-query';
 
-export function useGetUsers(queryParams: IFnParams) {
+export function useGetUsers(
+	queryParams: IFnParams,
+	id?: string,
+) {
 	const query = useQuery({
 		queryKey: [key.QUERY_KEY_USERS, queryParams],
 		queryFn: () => getUsersFn(queryParams),
 		placeholderData: keepPreviousData,
 		refetchOnWindowFocus: false,
+		enabled: id ? false : true,
 	});
 
 	return query;
@@ -35,6 +39,9 @@ export function useGetUser(userId: string) {
 	const query = useQuery({
 		queryKey: [key.QUERY_KEY_USER, userId],
 		queryFn: () => getUserFn(userId),
+		enabled: !!userId,
+		retry: 1,
+		refetchOnWindowFocus: false,
 	});
 	return query;
 }
@@ -71,7 +78,7 @@ export function useUpdateUser() {
 	const { toastMessage } = useMessage();
 	const mutate = useMutation({
 		mutationKey: [key.MUTATION_KEY_UPDATE_USER],
-		mutationFn: ({ id, formData }: IUpdateUserFnProps) =>
+		mutationFn: ({ id, formData }: IUpdateUserFnParams) =>
 			upadateUserFn({ id, formData }),
 		onSuccess: (data) => {
 			queryCLient.invalidateQueries({
@@ -94,13 +101,13 @@ export function useUpdateUser() {
 }
 
 export function useDeleteUser() {
-	const queryCLient = useQueryClient();
+	const queryClient = useQueryClient();
 	const { toastMessage } = useMessage();
 	const mutate = useMutation({
 		mutationKey: [key.MUTATION_KEY_DELETE_USER],
 		mutationFn: (id: string) => deleteUserFn(id),
 		onSuccess: (data) => {
-			queryCLient.invalidateQueries({
+			queryClient.invalidateQueries({
 				queryKey: [key.QUERY_KEY_USERS],
 			});
 			toastMessage({

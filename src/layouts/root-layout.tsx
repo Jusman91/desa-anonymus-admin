@@ -7,6 +7,7 @@ import { getUser } from '@/handlers/handle-session';
 import { ConfigProvider, Layout } from 'antd';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useTheme } from '@/hooks/use-theme';
+import { UserContextProvider } from '@/contexts/users-context';
 
 const { Header, Sider, Content } = Layout;
 const RootLayout = () => {
@@ -19,6 +20,7 @@ const RootLayout = () => {
 
 	return (
 		<ConfigProvider theme={rootTheme}>
+			{/* <UserContextProvider> */}
 			<main className='relative'>
 				<Layout>
 					<section className='sticky top-0 h-screen'>
@@ -44,6 +46,7 @@ const RootLayout = () => {
 					</Layout>
 				</Layout>
 			</main>
+			{/* </UserContextProvider> */}
 		</ConfigProvider>
 	);
 };

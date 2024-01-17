@@ -12,7 +12,7 @@ import {
 } from 'react';
 
 const initialValue = {
-	myTheme: 'dark',
+	myTheme: 'light',
 	toggleMyTheme: () => {},
 };
 
@@ -26,12 +26,12 @@ export const ThemeContextProvider = ({
 	children: ReactNode;
 }) => {
 	const [myTheme, setTheme] = useState(
-		getTheme() || 'dark',
+		getTheme() || 'light',
 	);
 
 	const toggleMyTheme = () => {
 		setTheme((prev) => {
-			const newTheme = prev === 'dark' ? 'light' : 'dark';
+			const newTheme = prev === 'light' ? 'dark' : 'light';
 			saveTheme(newTheme);
 			return newTheme;
 		});

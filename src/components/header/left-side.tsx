@@ -1,14 +1,16 @@
 import { useLocation } from 'react-router-dom';
+import CustomTypography from '../elements/typography';
 
 const LeftSide = () => {
 	const location = useLocation();
 	const titleBar =
-		location.pathname.split('/').pop() || 'dashboard';
+		location.pathname.split('/').reverse()[0] ||
+		'dashboard';
 	return (
 		<aside>
-			<h5 className='capitalize text-sm font-medium'>
+			<CustomTypography className='capitalize'>
 				{titleBar}
-			</h5>
+			</CustomTypography>
 		</aside>
 	);
 };

@@ -5,9 +5,13 @@ import DEFAULT_PROFILE from '@/assets/img/user_default.jpg';
 import ColumnSearch from './get-column-search';
 import { formatDate } from '@/lib/utils/utils';
 import Button from '../elements/button';
+import { Link } from 'react-router-dom';
+import { useTableHandlers } from '@/hooks/use-table-handlers';
 
 const TableColumnUser = () => {
 	const getColumnSearchProps = ColumnSearch();
+	const { handleButtonDeleteClick } = useTableHandlers();
+
 	const columnUser: ColumnsType<IUser> = [
 		{
 			title: 'Avatar',
@@ -74,15 +78,23 @@ const TableColumnUser = () => {
 			key: 'action',
 			align: 'center',
 			width: '10%',
-			render: () => (
+			render: (_, record) => (
 				<Space>
 					<Button size='small' style={{ fontSize: 12 }}>
-						Edit
+						<Link to={`/users/${record._id}/edit`}>
+							Edit
+						</Link>
 					</Button>
 					<Button
 						size='small'
 						type='primary'
 						danger
+						disabled={
+							record.role === 'admin' ? true : false
+						}
+						onClick={() =>
+							handleButtonDeleteClick(record._id)
+						}
 						style={{ fontSize: 12 }}>
 						Delete
 					</Button>

@@ -1,6 +1,7 @@
+import Button from '@/components/elements/button';
 import { useAuthFormContext } from '@/hooks/use-context';
 import { authFormLoginValidations } from '@/validations/auth-form-validation';
-import { Button, Form, Input, Spin } from 'antd';
+import { Form, Input, Spin } from 'antd';
 
 const { Item } = Form;
 const AuthFormItems = () => {
@@ -36,7 +37,7 @@ const AuthFormItems = () => {
 					<Button
 						type='primary'
 						htmlType='submit'
-						className='w-full'>
+						className='w-full shadow-none'>
 						Login
 					</Button>
 				)}

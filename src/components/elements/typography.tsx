@@ -10,7 +10,7 @@ const CustomTypography = ({
 		<h3
 			{...props}
 			className={cn(
-				'text-base md:text-lg font-semibold text-white w-fit',
+				'text-base font-semibold text-color-base w-fit',
 				className,
 			)}>
 			{children}

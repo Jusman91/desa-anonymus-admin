@@ -39,7 +39,6 @@ export const ColumnCloseButton = ({
 }: IOnClick) => {
 	return (
 		<Button
-			// type='link'
 			onClick={onClick}
 			className='text-[10px] p-0 h-0 border-none'>
 			Close

@@ -82,11 +82,14 @@ const ColumnSearch = () => {
 			</Icon>
 		),
 		onFilterDropdownOpenChange: (visible) => {
-			if (visible) {
-				setTimeout(
-					() => searchInput.current?.select(),
-					100,
-				);
+			// if (visible) {
+			// 	setTimeout(
+			// 		() => searchInput.current?.select(),
+			// 		100,
+			// 	);
+			// }
+			if (visible && searchInput.current) {
+				searchInput.current.select();
 			}
 		},
 

@@ -36,7 +36,9 @@ export const GlobalSearchInput = () => {
 			allowClear
 			enterButton
 			size='small'
-			onSearch={handleGlobalSearch}
+			onSearch={(value) =>
+				value.length > 0 && handleGlobalSearch(value)
+			}
 		/>
 	);
 };

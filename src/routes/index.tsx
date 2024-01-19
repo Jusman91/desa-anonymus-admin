@@ -12,7 +12,6 @@ import {
 	CreateUser,
 	DeleteArticle,
 	DeleteProduct,
-	DeleteUser,
 	Home,
 	Login,
 	NotFound,
@@ -54,12 +53,6 @@ const Routes = () => {
 						{
 							path: '',
 							element: <Users />,
-							children: [
-								{
-									path: ':id/delete',
-									element: <DeleteUser />,
-								},
-							],
 						},
 						{
 							path: ':id/details',

@@ -8,6 +8,7 @@ import { useThemeContext } from '@/hooks/use-context';
 
 const ButtonToggleTheme = () => {
 	const { myTheme, toggleMyTheme } = useThemeContext();
+
 	return (
 		<Switch
 			size='small'

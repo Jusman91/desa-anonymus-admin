@@ -1,15 +1,15 @@
 import { AuthFormContext } from '@/contexts/auth-form-context';
 import { MenuCollapseContext } from '@/contexts/menu-collapse-context';
+import { TableContext } from '@/contexts/table-context';
 import { ThemeContext } from '@/contexts/theme-context';
 import { UserFormContext } from '@/contexts/user-form-context';
-import { UsersContext } from '@/contexts/users-context';
 import {
 	IAuthFormContextProps,
 	ICollapseProps,
 	IErrorUseContext,
+	ITableContext,
 	IThemeContext,
 	IUserFormContext,
-	IUsersContext,
 } from '@/types';
 import { useContext } from 'react';
 
@@ -48,8 +48,8 @@ export function useUserFormContext(): IUserFormContext {
 	return context as IUserFormContext;
 }
 
-export function useUsersContext(): IUsersContext {
-	const context = useContext(UsersContext);
-	throwError({ context, message: 'UsersContext' });
-	return context as IUsersContext;
+export function useTableContext(): ITableContext {
+	const context = useContext(TableContext);
+	throwError({ context, message: 'TableContext' });
+	return context as ITableContext;
 }

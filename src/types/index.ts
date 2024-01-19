@@ -81,6 +81,10 @@ export type QueryParams =
 	| 'category'
 	| 'inStock'
 	| 'price';
+export interface IUploadFile {
+	url: string;
+	file: File;
+}
 export interface IFnParams {
 	page: number;
 	sort: string | undefined;
@@ -151,15 +155,8 @@ export type UserFormNameProps =
 	| 'update-user';
 export interface IUserFormContext {
 	form: FormInstance;
-	handleSubmit: (value: ICreateUser | IUpdateUser) => void;
-	createUserIsPending: boolean;
-	updateUserIsPending: boolean;
-	setFormName: (value: UserFormNameProps) => void;
 	formName: string;
-	id: string;
-	setId: (value: string) => void;
-	open: boolean;
-	setOpen: (value: boolean) => void;
+	setFormName: (value: UserFormNameProps) => void;
 }
 export interface ICreateUser {
 	username: string;
@@ -191,16 +188,6 @@ export interface IRulesFormUser {
 	email: Rule[];
 	password: Rule[];
 	profilePic?: Rule[];
-}
-export interface IUsersContext {
-	id: string;
-	setId: (id: string) => void;
-	isOpenModal: boolean;
-	setIsOpenModal: (isOpenModal: boolean) => void;
-	users: IUser[] | undefined;
-	totalData?: number;
-	isLoading?: boolean;
-	isFetching?: boolean;
 }
 // end user
 
@@ -289,6 +276,13 @@ export interface IHandleColumnResetProps {
 export interface IHandleColumnCloseProps {
 	close: () => void;
 }
+export interface ITableContext {
+	open: boolean;
+	idDelete: string;
+	setOpen: (open: boolean) => void;
+	setIdDelete: (id: string) => void;
+}
+
 // end table
 export type MessageType =
 	| 'success'

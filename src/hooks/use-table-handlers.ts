@@ -6,7 +6,8 @@ import {
 	IHandleColumnSearchProps,
 	IHandleTableChangeProps,
 } from '@/types';
-import { useUserFormContext } from './use-context';
+import { useTableContext } from './use-context';
+import { useSearchParams } from 'react-router-dom';
 
 export function useTableHandlers() {
 	const {
@@ -19,7 +20,8 @@ export function useTableHandlers() {
 		deleteQuery,
 		deleteAllQuerys,
 	} = useSearchParamsQuery();
-	const { setId, setOpen } = useUserFormContext();
+	const [searchParams] = useSearchParams();
+	const { setIdDelete, setOpen } = useTableContext();
 
 	const handleTableChange = <T>({
 		pagination,
@@ -80,7 +82,6 @@ export function useTableHandlers() {
 		e,
 	) => {
 		e?.preventDefault();
-		console.log(value);
 		if (value.length > 0) {
 			setSearchQuery(value);
 		} else {
@@ -89,7 +90,9 @@ export function useTableHandlers() {
 	};
 
 	const handleGlobalReset = () => {
-		deleteAllQuerys();
+		if (searchParams.toString().length > 0) {
+			deleteAllQuerys();
+		}
 	};
 
 	const handleColumnSearch = ({
@@ -124,7 +127,7 @@ export function useTableHandlers() {
 	};
 
 	const handleButtonDeleteClick = (userId: string) => {
-		setId(userId);
+		setIdDelete(userId);
 		setOpen(true);
 	};
 

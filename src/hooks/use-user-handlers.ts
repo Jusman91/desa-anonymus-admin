@@ -10,26 +10,47 @@ import type {
 	TablePaginationConfig,
 } from 'antd/es/table/interface';
 import { useTableHandlers } from './use-table-handlers';
-import { useUserFormContext } from './use-context';
+import {
+	useTableContext,
+	useUserFormContext,
+} from './use-context';
 import { useQueryClient } from '@tanstack/react-query';
 import { key } from '@/static/key';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useUploadFile } from '@/lib/react-query/mutation-upload-file';
 
 export function useUserHandlers() {
+	const { setOpen } = useTableContext();
+	const { form } = useUserFormContext();
+	const { id } = useParams();
+	const url = `users/upload_profile_pic/${id}`;
+
 	const {
 		mutate: createUser,
 		isPending: isPendingCreate,
 		isSuccess: isSuccessCreate,
 	} = useCreateUser();
-	const { mutate: updateUser } = useUpdateUser();
-	const { mutate: deleteUser } = useDeleteUser();
+
+	const {
+		mutateAsync: uploadPic,
+		isPending: isPendingUpload,
+	} = useUploadFile();
+
+	const { mutate: updateUser, isPending: isPendingUpdate } =
+		useUpdateUser();
+
+	const { mutate: deleteUser, isPending: isPendingDelete } =
+		useDeleteUser();
+
 	const queryClient = useQueryClient();
 	const { handleTableChange } = useTableHandlers();
-	const { setOpen, form } = useUserFormContext();
-	const { id } = useParams();
 
-	const loading = isPendingCreate;
+	const loading =
+		isPendingCreate ||
+		isPendingUpload ||
+		isPendingUpdate ||
+		isPendingDelete;
 
 	const handleTableChangeUser = (
 		pagination: TablePaginationConfig,
@@ -50,12 +71,30 @@ export function useUserHandlers() {
 		});
 	};
 
-	const handleSubmit = (
+	const handleSubmit = async (
 		value: ICreateUser | IUpdateUser,
 	) => {
 		if (id && 'profilePic' in value) {
-			// updateUser({ id, formData: value });
-			console.log(value);
+			const profilePicObj = value.profilePic;
+
+			let picURL = '';
+			if (
+				profilePicObj &&
+				typeof profilePicObj === 'object'
+			) {
+				const file = (profilePicObj as { file?: File })
+					.file;
+				if (file) {
+					const result = await uploadPic({ url, file });
+					picURL = result;
+				}
+			}
+
+			const newFormData: IUpdateUser = {
+				...value,
+				...(profilePicObj && { profilePic: picURL }),
+			};
+			updateUser({ id, formData: newFormData });
 		} else {
 			createUser(value as ICreateUser);
 		}
@@ -67,9 +106,9 @@ export function useUserHandlers() {
 				queryClient.invalidateQueries({
 					queryKey: [key.QUERY_KEY_USERS, id],
 				});
-				setOpen(false);
 			},
 		});
+		setOpen(false);
 	};
 
 	const onCancelDelete = () => {

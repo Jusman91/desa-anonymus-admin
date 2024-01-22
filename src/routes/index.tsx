@@ -112,7 +112,7 @@ const Routes = () => {
 							element: <CreateProduct />,
 						},
 						{
-							path: ':id/',
+							path: ':id/edit',
 							element: <UpdateProduct />,
 						},
 						{

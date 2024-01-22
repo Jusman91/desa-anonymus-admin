@@ -22,10 +22,10 @@ export async function getProductsFn(params: IFnParams) {
 	}
 }
 
-export async function getProductFn(id: string) {
+export async function getProductFn(productId: string) {
 	try {
 		const { data } = await axiosInstance.get(
-			`/products/${id}`,
+			`/products/${productId}`,
 		);
 		return data as IProduct;
 	} catch (error) {

@@ -1,12 +1,7 @@
-import { UserFormContextProvider } from '@/contexts/user-form-context';
 import { Outlet } from 'react-router-dom';
 
 const UsersLayout = () => {
-	return (
-		<UserFormContextProvider>
-			<Outlet />
-		</UserFormContextProvider>
-	);
+	return <Outlet />;
 };
 
 export default UsersLayout;

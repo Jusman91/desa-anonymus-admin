@@ -1,13 +1,16 @@
 import { useGetCategories } from '@/lib/react-query/querys-categories';
+import { IResponseCategories } from '@/types';
 import { ColumnFilterItem } from 'antd/es/table/interface';
 
 export const ColumFilter = (url: string) => {
-	const { data: categories } = useGetCategories(url);
+	const { data: categories } = useGetCategories(
+		url,
+	) as IResponseCategories;
 	const filterObjCategory = {
 		filters: categories?.map(
-			(category: { name: string }): ColumnFilterItem => ({
+			(category): ColumnFilterItem => ({
 				text: category.name,
-				value: category.name,
+				value: category.name as unknown as boolean,
 			}),
 		),
 		filterMultiple: false,

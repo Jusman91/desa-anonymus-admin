@@ -20,16 +20,12 @@ import {
 	useQueryClient,
 } from '@tanstack/react-query';
 
-export function useGetUsers(
-	queryParams: IFnParams,
-	id?: string,
-) {
+export function useGetUsers(queryParams: IFnParams) {
 	const query = useQuery({
 		queryKey: [key.QUERY_KEY_USERS, queryParams],
 		queryFn: () => getUsersFn(queryParams),
 		placeholderData: keepPreviousData,
 		refetchOnWindowFocus: false,
-		enabled: id ? false : true,
 	});
 
 	return query;

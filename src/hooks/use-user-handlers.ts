@@ -10,19 +10,17 @@ import type {
 	TablePaginationConfig,
 } from 'antd/es/table/interface';
 import { useTableHandlers } from './use-table-handlers';
-import {
-	useTableContext,
-	useUserFormContext,
-} from './use-context';
+import { useTableContext } from './use-context';
 import { useQueryClient } from '@tanstack/react-query';
 import { key } from '@/static/key';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useUploadFile } from '@/lib/react-query/mutation-upload-file';
+import { useForm } from './use-form';
+import { useEffect } from 'react';
 
 export function useUserHandlers() {
-	const { setOpen } = useTableContext();
-	const { form } = useUserFormContext();
+	const { setOpen, setIdDelete } = useTableContext();
+	const { ResetFieldsValue } = useForm();
 	const { id } = useParams();
 	const url = `users/upload_profile_pic/${id}`;
 
@@ -40,8 +38,11 @@ export function useUserHandlers() {
 	const { mutate: updateUser, isPending: isPendingUpdate } =
 		useUpdateUser();
 
-	const { mutate: deleteUser, isPending: isPendingDelete } =
-		useDeleteUser();
+	const {
+		mutate: deleteUser,
+		isPending: isPendingDelete,
+		isSuccess: isSuccessDelete,
+	} = useDeleteUser();
 
 	const queryClient = useQueryClient();
 	const { handleTableChange } = useTableHandlers();
@@ -60,14 +61,6 @@ export function useUserHandlers() {
 		handleTableChange<IUser>({
 			pagination,
 			sorter,
-		});
-	};
-
-	const handleCreate = (value: ICreateUser) => {
-		createUser(value, {
-			onSuccess: () => {
-				form.resetFields();
-			},
 		});
 	};
 
@@ -92,7 +85,9 @@ export function useUserHandlers() {
 
 			const newFormData: IUpdateUser = {
 				...value,
-				...(profilePicObj && { profilePic: picURL }),
+				...(typeof profilePicObj === 'object' && {
+					profilePic: picURL,
+				}),
 			};
 			updateUser({ id, formData: newFormData });
 		} else {
@@ -115,16 +110,23 @@ export function useUserHandlers() {
 		setOpen(false);
 	};
 
+	if (isSuccessCreate) {
+		ResetFieldsValue;
+	}
+
 	useEffect(() => {
-		if (isSuccessCreate) {
-			form.resetFields();
+		if (isSuccessDelete) {
+			setIdDelete('');
 		}
-	}, [form, isSuccessCreate]);
+
+		return () => {
+			setIdDelete('');
+		};
+	}, [isSuccessDelete, setIdDelete]);
 
 	return {
 		loading,
 		handleTableChangeUser,
-		handleCreate,
 		handleDelete,
 		onCancelDelete,
 		handleSubmit,

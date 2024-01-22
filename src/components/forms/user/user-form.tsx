@@ -1,11 +1,12 @@
 import { Form } from 'antd';
 import UserFormitem from './user-form-item';
-import { useUserFormContext } from '@/hooks/use-context';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useGetUser } from '@/lib/react-query/querys-mutations-user';
 import { useUserHandlers } from '@/hooks/use-user-handlers';
 import Loading from '@/components/loading/loading';
+import { useFormContext } from '@/hooks/use-context';
+import { IUser } from '@/types';
+import { useForm } from '@/hooks/use-form';
 
 const UserForm = () => {
 	const initialValues = {
@@ -17,14 +18,11 @@ const UserForm = () => {
 
 	const { id } = useParams();
 	const { data: user } = useGetUser(id || '');
-	const { form, formName } = useUserFormContext();
+	const { form, formName } = useFormContext();
+	const { SetFieldsValue } = useForm();
 	const { handleSubmit, loading } = useUserHandlers();
 
-	useEffect(() => {
-		if (id) {
-			form.setFieldsValue(user);
-		}
-	}, [id, form, user]);
+	SetFieldsValue<IUser>(user as IUser);
 
 	return (
 		<div className='grid place-items-center min-h-screen max-w-4xl w-full mx-auto'>

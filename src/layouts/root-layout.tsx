@@ -8,6 +8,7 @@ import { ConfigProvider, Layout } from 'antd';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useTheme } from '@/hooks/use-theme';
 import { TableContextProvider } from '@/contexts/table-context';
+import { FormContextProvider } from '@/contexts/form-context';
 
 const { Header, Sider, Content } = Layout;
 const RootLayout = () => {
@@ -21,31 +22,33 @@ const RootLayout = () => {
 	return (
 		<ConfigProvider theme={rootTheme}>
 			<TableContextProvider>
-				<main className='relative'>
-					<Layout>
-						<section className='sticky top-0 h-screen'>
-							<Sider
-								collapsed={collapse}
-								theme='light'
-								className='custom-scrollbar h-full overflow-y-scroll p-2'>
-								<SideBar />
-							</Sider>
-							<ButtonCollapse
-								toggleCollapse={toggleCollapse}
-								collapse={collapse}
-							/>
-						</section>
-						<Layout className='px-4'>
-							<Header className='flex h-14 items-center rounded-md bg-bkg-container pl-2 pr-4 sticky top-0 z-[999]'>
-								<Navbar />
-							</Header>
-							<Content className='py-2'>
-								<Outlet />
-							</Content>
-							<Footer />
+				<FormContextProvider>
+					<main className='relative'>
+						<Layout>
+							<section className='sticky top-0 h-screen'>
+								<Sider
+									collapsed={collapse}
+									theme='light'
+									className='custom-scrollbar h-full overflow-y-scroll p-2'>
+									<SideBar />
+								</Sider>
+								<ButtonCollapse
+									toggleCollapse={toggleCollapse}
+									collapse={collapse}
+								/>
+							</section>
+							<Layout className='px-4'>
+								<Header className='flex h-14 items-center rounded-md bg-bkg-container pl-2 pr-4 sticky top-0 z-[999]'>
+									<Navbar />
+								</Header>
+								<Content className='py-2'>
+									<Outlet />
+								</Content>
+								<Footer />
+							</Layout>
 						</Layout>
-					</Layout>
-				</main>
+					</main>
+				</FormContextProvider>
 			</TableContextProvider>
 		</ConfigProvider>
 	);

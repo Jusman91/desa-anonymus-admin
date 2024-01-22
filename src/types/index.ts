@@ -12,7 +12,11 @@ import type {
 	FilterValue,
 	SorterResult,
 } from 'antd/es/table/interface';
-import type { FormInstance, InputProps } from 'antd';
+import type {
+	FormInstance,
+	InputProps,
+	UploadFile,
+} from 'antd';
 
 export type DivElement =
 	React.HTMLAttributes<HTMLDivElement>;
@@ -71,6 +75,16 @@ export interface IMenus {
 	selectedKeys: string[];
 	onClick: MenuProps['onClick'];
 }
+export interface ICategories {
+	name: string;
+}
+export interface IModalDeleteProps {
+	title: string;
+	loading: boolean;
+	open: boolean;
+	onCancel: () => void;
+	onDelete: () => void;
+}
 
 // api
 export type QueryParams =
@@ -103,6 +117,9 @@ export interface IResponseSuccess {
 export interface IResponseError extends AxiosError {
 	message: string;
 	status: number;
+}
+export interface IResponseCategories {
+	data: ICategories[];
 }
 // end api
 
@@ -150,13 +167,19 @@ export interface INewDataProps {
 // end home
 
 // user
-export type UserFormNameProps =
+export type FormName =
 	| 'create-user'
-	| 'update-user';
-export interface IUserFormContext {
+	| 'update-user'
+	| 'create-product'
+	| 'update-product'
+	| 'create-article'
+	| 'update-article';
+export interface IFormContext {
 	form: FormInstance;
 	formName: string;
-	setFormName: (value: UserFormNameProps) => void;
+	objURL: UploadFile | undefined;
+	setFormName: (value: FormName) => void;
+	setObjURL: (value: UploadFile | undefined) => void;
 }
 export interface ICreateUser {
 	username: string;
@@ -183,11 +206,10 @@ export interface IUpdateUserFnParams {
 	id: string;
 	formData: IUpdateUser;
 }
-export interface IRulesFormUser {
+export interface IRulesUserForm {
 	username: Rule[];
 	email: Rule[];
 	password: Rule[];
-	profilePic?: Rule[];
 }
 // end user
 
@@ -211,6 +233,15 @@ export interface IProduct extends ICreateProduct {
 export interface IUpdateProductFnProps {
 	id: string;
 	formData: ICreateProduct;
+}
+export interface IRulesProductForm {
+	name: Rule[];
+	price: Rule[];
+	category: Rule[];
+	contact: Rule[];
+	location: Rule[];
+	description: Rule[];
+	inStock: Rule[];
 }
 // end product
 

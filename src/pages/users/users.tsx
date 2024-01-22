@@ -4,23 +4,18 @@ import TableColumnUser from '@/components/table/table-column-user';
 import { useGetUsers } from '@/lib/react-query/querys-mutations-user';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
 import { useUserHandlers } from '@/hooks/use-user-handlers';
-import { useParams } from 'react-router-dom';
 import { DeleteUser } from '..';
 
 const Users = () => {
-	const { id } = useParams();
 	const { columnUser } = TableColumnUser();
 	const { page, limit, sort, search } =
 		useSearchParamsQuery();
-	const { data, isFetching, isLoading } = useGetUsers(
-		{
-			page,
-			limit,
-			sort,
-			search,
-		},
-		id,
-	);
+	const { data, isFetching, isLoading } = useGetUsers({
+		page,
+		limit,
+		sort,
+		search,
+	});
 	const { data: users, totalData } = data ?? {};
 	const loading = isLoading || isFetching;
 	const { handleTableChangeUser } = useUserHandlers();

@@ -1,8 +1,9 @@
 import UserForm from '@/components/forms/user/user-form';
-import { useFormName } from '@/hooks/use-form-name';
+import { useForm } from '@/hooks/use-form';
 
 const CreateUser = () => {
-	useFormName('create-user');
+	const { FormName } = useForm();
+	FormName('create-user');
 	return (
 		<section className='relative'>
 			<UserForm />

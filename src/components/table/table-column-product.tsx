@@ -6,11 +6,15 @@ import ColumnSearch from './get-column-search';
 import { ColumFilter } from './get-column-filter';
 import { formatDate } from '@/lib/utils/utils';
 import Button from '../elements/button';
+import { Link } from 'react-router-dom';
+import { useTableHandlers } from '@/hooks/use-table-handlers';
 
 const TableColumnProduct = () => {
 	const getColumnSearchProps = ColumnSearch();
 	const { filterObjCategory, filterObjInStock } =
 		ColumFilter('product');
+	const { handleButtonDeleteClick } = useTableHandlers();
+
 	const columnProduct: ColumnsType<IProduct> = [
 		{
 			title: 'Thumbnail',
@@ -120,15 +124,20 @@ const TableColumnProduct = () => {
 			key: 'action',
 			align: 'center',
 			width: '10%',
-			render: () => (
+			render: (_, record) => (
 				<Space>
 					<Button size='small' style={{ fontSize: 12 }}>
-						Edit
+						<Link to={`/products/${record._id}/edit`}>
+							Edit
+						</Link>
 					</Button>
 					<Button
 						size='small'
 						type='primary'
 						danger
+						onClick={() =>
+							handleButtonDeleteClick(record._id)
+						}
 						style={{ fontSize: 12 }}>
 						Delete
 					</Button>

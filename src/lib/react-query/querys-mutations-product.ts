@@ -31,10 +31,13 @@ export function useGetProducts(queryParams: IFnParams) {
 	return query;
 }
 
-export function useGetProduct(id: string) {
+export function useGetProduct(productId: string) {
 	const query = useQuery({
-		queryKey: [key.QUERY_KEY_PRODUCT, id],
-		queryFn: () => getProductFn(id),
+		queryKey: [key.QUERY_KEY_PRODUCT, productId],
+		queryFn: () => getProductFn(productId),
+		enabled: !!productId,
+		retry: 1,
+		refetchOnWindowFocus: false,
 	});
 	return query;
 }

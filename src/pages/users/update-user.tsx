@@ -1,8 +1,9 @@
 import UserForm from '@/components/forms/user/user-form';
-import { useFormName } from '@/hooks/use-form-name';
+import { useForm } from '@/hooks/use-form';
 
 const UpdateUser = () => {
-	useFormName('update-user');
+	const { FormName } = useForm();
+	FormName('update-user');
 
 	return (
 		<section className='relative'>

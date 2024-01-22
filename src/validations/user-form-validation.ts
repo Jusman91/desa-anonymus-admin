@@ -1,29 +1,6 @@
-import { IRulesFormUser } from '@/types';
+import { IRulesUserForm } from '@/types';
 
-export const userFormValidation: IRulesFormUser = {
-	profilePic: [
-		{
-			validator(_, value) {
-				return new Promise((resolve, reject) => {
-					const fileType = value?.file?.type;
-					const allowedTypes = [
-						'image/jpeg',
-						'image/png',
-						'image/jpg',
-					];
-					if (allowedTypes.includes(fileType)) {
-						resolve(value);
-					} else {
-						reject(
-							new Error(
-								`Invalid file type ${fileType}. Invalid file type. Please upload a JPG, PNG, or JPEG file.`,
-							),
-						);
-					}
-				});
-			},
-		},
-	],
+export const userFormValidation: IRulesUserForm = {
 	username: [
 		{
 			required: true,

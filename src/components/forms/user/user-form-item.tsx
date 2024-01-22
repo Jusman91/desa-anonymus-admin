@@ -1,13 +1,18 @@
 import Button from '@/components/elements/button';
-import { useUserFormContext } from '@/hooks/use-context';
 import { userFormValidation } from '@/validations/user-form-validation';
 import { Form, Input, Select } from 'antd';
-import InputProfile from './user-input-profile';
 import { cn } from '@/lib/utils/utils';
+import { useFormContext } from '@/hooks/use-context';
+import FormItemUploadImg from '../form-item-upload-Img';
+import { useParams } from 'react-router-dom';
+import { useGetUser } from '@/lib/react-query/querys-mutations-user';
+import { IUser } from '@/types';
 
 const { Item } = Form;
 const UserFormitem = () => {
-	const { formName } = useUserFormContext();
+	const { id } = useParams();
+	const { formName } = useFormContext();
+	const { data: user } = useGetUser(id || '');
 
 	const updateUser = formName === 'update-user';
 
@@ -16,10 +21,14 @@ const UserFormitem = () => {
 			className={cn(
 				updateUser ? 'grid md:grid-cols-2 gap-4' : '',
 			)}>
-			<InputProfile />
+			{updateUser ? (
+				<div className='relative overflow-hidden'>
+					<FormItemUploadImg data={user as IUser} />
+				</div>
+			) : null}
 			<div
 				className={cn(
-					'grid grid-cols-1 gap-y-0 md:gap-4 w-full',
+					'grid grid-cols-1 gap-y-0 gap-x-4 w-full',
 					updateUser ? '' : 'md:grid-cols-2',
 				)}>
 				<Item
@@ -61,6 +70,8 @@ const UserFormitem = () => {
 				<Item name='role' label='Role'>
 					<Select
 						placeholder='Select your role'
+						listItemHeight={10}
+						listHeight={100}
 						className='text-sm md:text-lg h-16'>
 						<Select.Option value='user'>User</Select.Option>
 						<Select.Option value='admin'>

@@ -1,3 +1,4 @@
+import { useToggle } from '@/hooks/use-toggle';
 import { ITableContext } from '@/types';
 import {
 	ReactNode,
@@ -16,7 +17,7 @@ export const TableContextProvider = ({
 	children: ReactNode;
 }) => {
 	const [idDelete, setIdDelete] = useState('');
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useToggle(false);
 
 	const valueContext = useMemo(() => {
 		return {
@@ -25,7 +26,7 @@ export const TableContextProvider = ({
 			open,
 			setOpen,
 		};
-	}, [idDelete, open]);
+	}, [idDelete, open, setOpen]);
 
 	return (
 		<TableContext.Provider value={valueContext}>

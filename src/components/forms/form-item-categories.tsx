@@ -1,5 +1,4 @@
-import { IResponseCategories } from '@/types';
-import { productFormValidation } from '@/validations/product-form-validation';
+import { ICategoriesProps } from '@/types';
 import { Form, Select } from 'antd';
 
 const { Item } = Form;
@@ -7,14 +6,15 @@ const { Option } = Select;
 
 const FormItemCategories = ({
 	data,
-}: IResponseCategories) => {
+	rules,
+}: ICategoriesProps) => {
 	return (
 		<Item
 			className='flex-1'
 			name='category'
 			label='Category'
 			required
-			rules={productFormValidation.category}
+			rules={rules}
 			hasFeedback>
 			<Select
 				placeholder='Select a category'

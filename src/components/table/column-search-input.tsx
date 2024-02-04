@@ -2,7 +2,6 @@ import { Input } from 'antd';
 import { forwardRef } from 'react';
 import type { InputRef } from 'antd';
 import { IColumnSearchInputProps } from '@/types';
-import { useTableHandlers } from '@/hooks/use-table-handlers';
 
 export const ColumnSearchInput = forwardRef<
 	InputRef,
@@ -26,19 +25,3 @@ export const ColumnSearchInput = forwardRef<
 		/>
 	);
 });
-
-export const GlobalSearchInput = () => {
-	const { handleGlobalSearch } = useTableHandlers();
-	return (
-		<Input.Search
-			autoComplete='off'
-			placeholder='Search...'
-			allowClear
-			enterButton
-			size='small'
-			onSearch={(value) =>
-				value.length > 0 && handleGlobalSearch(value)
-			}
-		/>
-	);
-};

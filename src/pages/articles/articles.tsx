@@ -1,18 +1,13 @@
 import DataTable from '@/components/table/data-table';
 import TableColumnArticle from '@/components/table/table-column-article';
+import { useArticleHandlers } from '@/hooks/use-article-handlers';
 import { useSearchParamsQuery } from '@/hooks/use-search-params';
-import { useTableHandlers } from '@/hooks/use-table-handlers';
 import { useGetArticles } from '@/lib/react-query/querys-mutations-article';
 import { IArticle } from '@/types';
-import type {
-	FilterValue,
-	SorterResult,
-	TablePaginationConfig,
-} from 'antd/es/table/interface';
+import { DeleteArticle } from '..';
 
 const Articles = () => {
 	const { columnArticle } = TableColumnArticle();
-	const { handleTableChange } = useTableHandlers();
 	const { page, limit, sort, search, category } =
 		useSearchParamsQuery();
 	const { data, isFetching, isLoading } = useGetArticles({
@@ -22,31 +17,23 @@ const Articles = () => {
 		search,
 		category,
 	});
+
 	const { data: articles, totalData } = data ?? {};
 	const loading = isFetching || isLoading;
+	const { handleTableChangeArticle } = useArticleHandlers();
 
-	const handleTableChangeArticle = (
-		pagination: TablePaginationConfig,
-		filters: Record<string, FilterValue | null>,
-		sorter:
-			| SorterResult<IArticle>
-			| SorterResult<IArticle>[],
-	) => {
-		handleTableChange<IArticle>({
-			pagination,
-			sorter,
-			filters,
-		});
-	};
 	return (
-		<DataTable
-			columns={columnArticle}
-			data={articles as IArticle[]}
-			totalData={totalData as number}
-			loading={loading}
-			onChange={handleTableChangeArticle}
-			addData='articles'
-		/>
+		<section className='relative'>
+			<DataTable
+				columns={columnArticle}
+				data={articles as IArticle[]}
+				totalData={totalData as number}
+				loading={loading}
+				onChange={handleTableChangeArticle}
+				addData='articles'
+			/>
+			<DeleteArticle />
+		</section>
 	);
 };
 

@@ -1,21 +1,22 @@
 import { IArticle } from '@/types';
-import { Avatar, Space } from 'antd';
+import { Avatar } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import DEFAULT_THUMBNAIL from '@/assets/img/default_thumbnail.png';
 import ColumnSearch from './get-column-search';
 import { ColumFilter } from './get-column-filter';
 import { formatDate } from '@/lib/utils/utils';
-import Button from '../elements/button';
+import ActionButton from './action-button';
 
 const TableColumnArticle = () => {
 	const getColumnSearchProps = ColumnSearch();
 	const { filterObjCategory } = ColumFilter('article');
+
 	const columnArticle: ColumnsType<IArticle> = [
 		{
 			title: 'Thumbnail',
 			dataIndex: 'thumbnail',
 			key: 'thumbnail',
-			width: '7%',
+			width: '8%',
 			align: 'center',
 			render: (_, { thumbnail }) => {
 				return (
@@ -82,20 +83,13 @@ const TableColumnArticle = () => {
 			title: 'Action',
 			key: 'action',
 			align: 'center',
-			width: '10%',
-			render: () => (
-				<Space>
-					<Button size='small' style={{ fontSize: 12 }}>
-						Edit
-					</Button>
-					<Button
-						size='small'
-						type='primary'
-						danger
-						style={{ fontSize: 12 }}>
-						Delete
-					</Button>
-				</Space>
+			width: '8%',
+			fixed: 'right',
+			render: (_, record) => (
+				<ActionButton
+					id={record._id}
+					link={`/articles/${record._id}/edit`}
+				/>
 			),
 		},
 	];

@@ -1,26 +1,23 @@
 import { IProduct } from '@/types';
-import { Avatar, Space } from 'antd';
+import { Avatar } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import DEFAULT_THUMBNAIL from '@/assets/img/default_thumbnail.png';
 import ColumnSearch from './get-column-search';
 import { ColumFilter } from './get-column-filter';
 import { formatDate } from '@/lib/utils/utils';
-import Button from '../elements/button';
-import { Link } from 'react-router-dom';
-import { useTableHandlers } from '@/hooks/use-table-handlers';
+import ActionButton from './action-button';
 
 const TableColumnProduct = () => {
 	const getColumnSearchProps = ColumnSearch();
 	const { filterObjCategory, filterObjInStock } =
 		ColumFilter('product');
-	const { handleButtonDeleteClick } = useTableHandlers();
 
 	const columnProduct: ColumnsType<IProduct> = [
 		{
 			title: 'Thumbnail',
 			dataIndex: 'thumbnail',
 			key: 'thumbnail',
-			width: '7%',
+			width: '8%',
 			align: 'center',
 			render: (_, { thumbnail }) => {
 				return (
@@ -68,7 +65,7 @@ const TableColumnProduct = () => {
 			dataIndex: 'contact',
 			key: 'contact',
 			align: 'center',
-			width: '10%',
+			width: '11%',
 			...getColumnSearchProps('contact'),
 		},
 		{
@@ -124,24 +121,12 @@ const TableColumnProduct = () => {
 			key: 'action',
 			align: 'center',
 			width: '10%',
+			fixed: 'right',
 			render: (_, record) => (
-				<Space>
-					<Button size='small' style={{ fontSize: 12 }}>
-						<Link to={`/products/${record._id}/edit`}>
-							Edit
-						</Link>
-					</Button>
-					<Button
-						size='small'
-						type='primary'
-						danger
-						onClick={() =>
-							handleButtonDeleteClick(record._id)
-						}
-						style={{ fontSize: 12 }}>
-						Delete
-					</Button>
-				</Space>
+				<ActionButton
+					id={record._id}
+					link={`/products/${record._id}/edit`}
+				/>
 			),
 		},
 	];

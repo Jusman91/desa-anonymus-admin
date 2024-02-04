@@ -43,7 +43,10 @@ const ProductFormItem = () => {
 						hasFeedback>
 						<InputNumber className='w-full' min={0} />
 					</Item>
-					<FormItemCategories data={categories} />
+					<FormItemCategories
+						data={categories}
+						rules={productFormValidation.category}
+					/>
 					<Item
 						className='flex-1'
 						name='inStock'

@@ -1,4 +1,7 @@
-import { useUploadFile } from '@/lib/react-query/mutation-upload-file';
+import {
+	useUpdateFile,
+	useUploadFile,
+} from '@/lib/react-query/mutation-file';
 import {
 	useCreateProduct,
 	useDeleteProduct,
@@ -21,13 +24,18 @@ import { useTableHandlers } from './use-table-handlers';
 export function useProductHandlers() {
 	const { id } = useParams();
 	const { setOpen, setIdDelete } = useTableContext();
-	const url = `products/upload_thumbnail/${id ? id : ''}`;
+	const url = `products/thumbnail/${id ? id : ''}`;
 	const { ResetFieldsValue } = useForm();
 
 	const {
 		mutateAsync: uploadThumbnail,
-		isPending: isPendingUpload,
+		isPending: isPendingUploadThum,
 	} = useUploadFile();
+
+	const {
+		mutateAsync: updateThumbnail,
+		isPending: isPendingUpdateThum,
+	} = useUpdateFile();
 
 	const {
 		mutate: createProduct,
@@ -51,7 +59,8 @@ export function useProductHandlers() {
 
 	const loading =
 		isPendingCreate ||
-		isPendingUpload ||
+		isPendingUploadThum ||
+		isPendingUpdateThum ||
 		isPendingUpdate ||
 		isPendingDelete;
 
@@ -76,7 +85,9 @@ export function useProductHandlers() {
 			const file = (thumbnailObj as { file?: File }).file;
 
 			if (file) {
-				const result = await uploadThumbnail({ url, file });
+				const result = id
+					? await updateThumbnail({ url, file })
+					: await uploadThumbnail({ url, file });
 				thumbURL = result;
 			}
 		}

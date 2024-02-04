@@ -16,7 +16,7 @@ const Search = () => {
 				)}
 			/>
 			<Icon
-				onClick={toggleActive}
+				onClick={toggleActive as () => void}
 				className='text-lg cursor-pointer'>
 				<IoSearchCircleSharp />
 			</Icon>

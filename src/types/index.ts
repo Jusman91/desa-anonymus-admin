@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { MenuProps } from 'antd';
 import { ChartOptions } from 'chart.js';
@@ -25,10 +26,10 @@ export type TypogaraphyElement =
 	React.HTMLAttributes<HTMLHeadingElement>;
 
 export type InputChange =
-	React.ChangeEventHandler<HTMLInputElement>;
+	React.ChangeEvent<HTMLInputElement>;
 
 export type OnPressEnter =
-	React.KeyboardEventHandler<HTMLInputElement>;
+	React.KeyboardEvent<HTMLInputElement>;
 
 export type FormSubmit = React.FormEvent<HTMLFormElement>;
 
@@ -95,7 +96,7 @@ export type QueryParams =
 	| 'category'
 	| 'inStock'
 	| 'price';
-export interface IUploadFile {
+export interface IFileFn {
 	url: string;
 	file: File;
 }
@@ -122,6 +123,13 @@ export interface IResponseCategories {
 	data: ICategories[];
 }
 // end api
+
+// categories
+export interface ICategoriesProps
+	extends IResponseCategories {
+	rules: Rule[];
+}
+// end categories
 
 // home
 export interface ISmallTtitle {
@@ -175,6 +183,8 @@ export type FormName =
 	| 'create-article'
 	| 'update-article';
 export interface IFormContext {
+	open: boolean;
+	setOpen: (value: boolean) => void;
 	form: FormInstance;
 	formName: string;
 	objURL: UploadFile | undefined;
@@ -266,6 +276,22 @@ export interface IUpdateArticleFnProps {
 	id: string;
 	formData: ICreateArticle;
 }
+export interface ITagProps {
+	tags: string[];
+}
+export interface IAddTagInputProps {
+	inputValue: string;
+	inputRef: React.RefObject<any>;
+	handleInputChange: (e: InputChange) => void;
+	handleInputConfirm: (e: OnPressEnter) => void;
+}
+export interface IRulesArticleForm {
+	title: Rule[];
+	author: Rule[];
+	description: Rule[];
+	category: Rule[];
+	content: Rule[];
+}
 // end article
 
 // table
@@ -312,6 +338,11 @@ export interface ITableContext {
 	idDelete: string;
 	setOpen: (open: boolean) => void;
 	setIdDelete: (id: string) => void;
+}
+export interface ITableActionButtonProps {
+	id: string;
+	role?: string;
+	link: string;
 }
 
 // end table

@@ -31,10 +31,13 @@ export function useGetArticles(queryParams: IFnParams) {
 	return query;
 }
 
-export function useGetArticle(id: string) {
+export function useGetArticle(articleId: string) {
 	const query = useQuery({
-		queryKey: [key.QUERY_KEY_ARTICLE, id],
-		queryFn: () => getArticleFn(id),
+		queryKey: [key.QUERY_KEY_ARTICLE, articleId],
+		queryFn: () => getArticleFn(articleId),
+		enabled: !!articleId,
+		retry: 1,
+		refetchOnWindowFocus: false,
 	});
 	return query;
 }

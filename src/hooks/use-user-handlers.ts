@@ -14,7 +14,7 @@ import { useTableContext } from './use-context';
 import { useQueryClient } from '@tanstack/react-query';
 import { key } from '@/static/key';
 import { useParams } from 'react-router-dom';
-import { useUploadFile } from '@/lib/react-query/mutation-upload-file';
+import { useUpdateFile } from '@/lib/react-query/mutation-file';
 import { useForm } from './use-form';
 import { useEffect } from 'react';
 
@@ -22,7 +22,7 @@ export function useUserHandlers() {
 	const { setOpen, setIdDelete } = useTableContext();
 	const { ResetFieldsValue } = useForm();
 	const { id } = useParams();
-	const url = `users/upload_profile_pic/${id}`;
+	const url = `users/profile_pic/${id}`;
 
 	const {
 		mutate: createUser,
@@ -31,9 +31,9 @@ export function useUserHandlers() {
 	} = useCreateUser();
 
 	const {
-		mutateAsync: uploadPic,
+		mutateAsync: updatePic,
 		isPending: isPendingUpload,
-	} = useUploadFile();
+	} = useUpdateFile();
 
 	const { mutate: updateUser, isPending: isPendingUpdate } =
 		useUpdateUser();
@@ -78,7 +78,7 @@ export function useUserHandlers() {
 				const file = (profilePicObj as { file?: File })
 					.file;
 				if (file) {
-					const result = await uploadPic({ url, file });
+					const result = await updatePic({ url, file });
 					picURL = result;
 				}
 			}

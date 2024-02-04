@@ -1,11 +1,11 @@
 import { IDataTableProps } from '@/types';
 import { Table } from 'antd';
 import TablePagination from './table-pagination-config';
-import Icon from '../elements/icon';
-import { MdAddCircle } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import { GlobalResetButton } from './table-column-buttons';
-import { GlobalSearchInput } from './column-search-input';
+import {
+	GlobalAddButton,
+	GlobalResetButton,
+	GlobalSearchInput,
+} from './global-action';
 
 const DataTable = <T extends object>(
 	props: IDataTableProps<T>,
@@ -22,19 +22,15 @@ const DataTable = <T extends object>(
 
 	return (
 		<div className='mt-4'>
-			<div className='flex justify-between items-center pb-1'>
-				<Link
-					to={`/${addData}/create`}
-					className='flex items-center'>
-					<Icon>{<MdAddCircle />}</Icon>
-					Add
-				</Link>
+			<div className='flex flex-col items-end gap-y-2 md:flex-row md:justify-between md:items-center md:gap-y-0 pb-1'>
+				<GlobalAddButton addData={addData} />
 				<div className='flex items-center gap-1'>
 					<GlobalSearchInput />
 					<GlobalResetButton />
 				</div>
 			</div>
 			<Table
+				scroll={{ x: 1000 }}
 				size='small'
 				rowKey='_id'
 				dataSource={data}

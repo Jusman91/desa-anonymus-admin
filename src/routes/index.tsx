@@ -10,8 +10,6 @@ import {
 	CreateArticle,
 	CreateProduct,
 	CreateUser,
-	DeleteArticle,
-	DeleteProduct,
 	Home,
 	Login,
 	NotFound,
@@ -89,10 +87,6 @@ const Routes = () => {
 							path: ':id/edit',
 							element: <UpdateArticle />,
 						},
-						{
-							path: ':id/delete',
-							element: <DeleteArticle />,
-						},
 					],
 				},
 				{
@@ -114,10 +108,6 @@ const Routes = () => {
 						{
 							path: ':id/edit',
 							element: <UpdateProduct />,
-						},
-						{
-							path: ':id/delete',
-							element: <DeleteProduct />,
 						},
 					],
 				},

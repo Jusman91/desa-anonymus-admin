@@ -1,23 +1,20 @@
 import { IUser } from '@/types';
-import { Avatar, Space } from 'antd';
+import { Avatar } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import DEFAULT_PROFILE from '@/assets/img/user_default.jpg';
 import ColumnSearch from './get-column-search';
 import { formatDate } from '@/lib/utils/utils';
-import Button from '../elements/button';
-import { Link } from 'react-router-dom';
-import { useTableHandlers } from '@/hooks/use-table-handlers';
+import ActionButton from './action-button';
 
 const TableColumnUser = () => {
 	const getColumnSearchProps = ColumnSearch();
-	const { handleButtonDeleteClick } = useTableHandlers();
 
 	const columnUser: ColumnsType<IUser> = [
 		{
 			title: 'Avatar',
 			dataIndex: 'profilePic',
 			key: 'profilePic',
-			width: '5%',
+			width: '7%',
 			align: 'center',
 			render: (_, { profilePic }) => {
 				return (
@@ -77,28 +74,14 @@ const TableColumnUser = () => {
 			title: 'Action',
 			key: 'action',
 			align: 'center',
-			width: '10%',
+			width: '8%',
+			fixed: 'right',
 			render: (_, record) => (
-				<Space>
-					<Button size='small' style={{ fontSize: 12 }}>
-						<Link to={`/users/${record._id}/edit`}>
-							Edit
-						</Link>
-					</Button>
-					<Button
-						size='small'
-						type='primary'
-						danger
-						disabled={
-							record.role === 'admin' ? true : false
-						}
-						onClick={() =>
-							handleButtonDeleteClick(record._id)
-						}
-						style={{ fontSize: 12 }}>
-						Delete
-					</Button>
-				</Space>
+				<ActionButton
+					id={record._id}
+					link={`/users/${record._id}/edit`}
+					role={record.role}
+				/>
 			),
 		},
 	];

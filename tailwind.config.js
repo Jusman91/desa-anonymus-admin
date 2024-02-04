@@ -14,6 +14,56 @@ export default {
 			fontFamily: {
 				raleway: ['Raleway', 'sans-serif'],
 			},
+			fontSize: {
+				h1: [
+					'clamp(20px, 3vw, 48px)',
+					{
+						lineHeight: '1',
+						fontWeight: '700',
+					},
+				],
+				h2: [
+					'clamp(18px, 2.8vw, 36px)',
+					{
+						lineHeight: '2.5rem',
+						fontWeight: '700',
+					},
+				],
+				h3: [
+					'clamp(16px, 2.6vw, 30px)',
+					{
+						lineHeight: '2.25rem',
+						fontWeight: '700',
+					},
+				],
+				h4: [
+					'clamp(14px, 2.4vw, 24px)',
+					{
+						lineHeight: '2rem',
+						fontWeight: '700',
+					},
+				],
+				h5: [
+					'clamp(12px, 2.2vw, 20px)',
+					{
+						lineHeight: '1.75rem',
+						fontWeight: '700',
+					},
+				],
+				h6: [
+					'clamp(12px, 2vw, 18px)',
+					{
+						lineHeight: '1.75rem',
+						fontWeight: '700',
+					},
+				],
+				p: [
+					'clamp(12px, 2vw, 14px)',
+					{
+						lineHeight: '1.25rem',
+					},
+				],
+			},
 			colors: {
 				'color-base':
 					'hsl(var(--color-base) / <alpha-value>)',

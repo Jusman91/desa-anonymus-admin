@@ -22,7 +22,7 @@ export function useForm() {
 		}, [values]);
 	};
 
-	const ResetFieldsValue = (isSuccess: boolean) => {
+	const ResetFieldsValue = (isSuccess?: boolean) => {
 		useEffect(() => {
 			if (isSuccess) {
 				form.resetFields();

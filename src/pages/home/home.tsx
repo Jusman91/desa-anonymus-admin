@@ -1,56 +1,44 @@
-import AnalitycsData from '@/components/dashboard/analitycs-data';
-import NewData from '@/components/dashboard/new-data';
-import TotalData from '@/components/dashboard/total-data';
-import CustomTypography from '@/components/elements/typography';
-import {
-	dataAnalitycs,
-	dataAnalitycsService,
-	dataProduct,
-	newArticle,
-	newProduct,
-} from '@/static/data-local';
+import NewProduct from './new-product';
+import NewArticle from './new-article';
+import UserStatistics from './user-statistics';
+import ArticleStatistics from './article-statistics';
+import ProductStatistics from './product-statistics';
 
 const Home = () => {
 	return (
 		<>
 			<section className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(100px,auto)] md:auto-rows-[minmax(160px,auto)] gap-2'>
-				<aside className='bg-[#192930] rounded-md row-span-2 p-2'>
-					<CustomTypography>
-						Produk Terbaru
-					</CustomTypography>
-					<div className='flex flex-col gap-4 p-2 text-white'>
-						{newProduct.map((product, idx) => (
-							<NewData key={idx} data={product} />
-						))}
-					</div>
-				</aside>
-				<div className='bg-[#192930] rounded-md p-2'>
-					<TotalData data={dataProduct} />
+				<div className='bg-bkg-container rounded-md row-span-2 p-2'>
+					<NewProduct />
 				</div>
-				<div className='bg-[#192930] rounded-md p-2'>
-					<TotalData data={dataProduct} />
+				<div className='bg-bkg-container rounded-md p-2'>
+					<ProductStatistics />
 				</div>
-				<div className='bg-[#192930] rounded-md row-span-2 p-2'>
-					<CustomTypography>
-						Artikel Terbaru
-					</CustomTypography>
-					<aside className='flex flex-col gap-4 p-2 text-white'>
-						{newArticle.map((article, idx) => (
-							<NewData key={idx} data={article} />
-						))}
-					</aside>
+				<div className='bg-bkg-container rounded-md p-2'>
+					<ArticleStatistics />
 				</div>
-				<div className='bg-[#192930] rounded-md p-2'>
-					<TotalData data={dataProduct} />
+				<div className='bg-bkg-container rounded-md row-span-2 p-2'>
+					<NewArticle />
 				</div>
-				<div className='bg-[#192930] rounded-md p-2'>
-					<TotalData data={dataProduct} />
+				<div className='bg-bkg-container rounded-md p-2'>
+					<UserStatistics />
 				</div>
-				<div className='bg-[#192930] rounded-md md:col-span-2 row-span-2 p-2'>
-					<AnalitycsData data={dataAnalitycs} services />
+				<div className='bg-bkg-container rounded-md p-2 grid place-items-center'>
+					<small className='text-orange-600 font-bold tracking-widest'>
+						**Coming soon**
+					</small>
 				</div>
-				<div className='bg-[#192930] rounded-md md:col-span-2 row-span-2 p-2'>
-					<AnalitycsData data={dataAnalitycsService} />
+				<div className='bg-bkg-container rounded-md md:col-span-2 row-span-2 p-2 grid place-items-center'>
+					{/* <AnalitycsData data={dataAnalitycs} services /> */}
+					<small className='text-orange-600 font-bold tracking-widest'>
+						**Coming soon**
+					</small>
+				</div>
+				<div className='bg-bkg-container rounded-md md:col-span-2 row-span-2 p-2 grid place-items-center'>
+					{/* <AnalitycsData data={dataAnalitycsService} /> */}
+					<small className='text-orange-600 font-bold tracking-widest'>
+						**Coming soon**
+					</small>
 				</div>
 			</section>
 		</>

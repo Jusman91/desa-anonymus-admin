@@ -9,6 +9,25 @@ export function cn(...inputs: ClassValue[]) {
 export const convertFileToUrl = (file: File) =>
 	URL.createObjectURL(file);
 
+export const getMonthName = (monthNumber: number) => {
+	const months = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec',
+	];
+
+	return months[monthNumber - 1] || '';
+};
+
 export function getColorPercentage(
 	percentage: number,
 ): string {

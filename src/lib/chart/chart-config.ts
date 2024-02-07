@@ -50,9 +50,9 @@ export const LineChartOption: ChartOptions<'line'> = {
 		},
 	},
 	scales: {
-		x: {
-			display: false,
-		},
+		// x: {
+		// 	display: false,
+		// },
 		y: {
 			display: false,
 		},

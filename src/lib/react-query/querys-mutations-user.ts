@@ -2,6 +2,7 @@ import {
 	createUserFn,
 	deleteUserFn,
 	getUserFn,
+	getUserStatisticsFn,
 	getUsersFn,
 	upadateUserFn,
 } from '@/api/user';
@@ -39,6 +40,16 @@ export function useGetUser(userId: string) {
 		retry: 1,
 		refetchOnWindowFocus: false,
 	});
+	return query;
+}
+
+export function useGetUserStatistics() {
+	const query = useQuery({
+		queryKey: [key.QUERY_KEY_USER_STATISTICS],
+		queryFn: () => getUserStatisticsFn(),
+		refetchOnWindowFocus: false,
+	});
+
 	return query;
 }
 

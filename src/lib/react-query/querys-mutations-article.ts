@@ -2,6 +2,7 @@ import {
 	createArticleFn,
 	deleteArticleFn,
 	getArticleFn,
+	getArticleStatisticsFn,
 	getArticlesFn,
 	upadateArticleFn,
 } from '@/api/article';
@@ -39,6 +40,16 @@ export function useGetArticle(articleId: string) {
 		retry: 1,
 		refetchOnWindowFocus: false,
 	});
+	return query;
+}
+
+export function useGetArticleStatistics() {
+	const query = useQuery({
+		queryKey: [key.QUERY_KEY_ARTICLE_STATISTICS],
+		queryFn: () => getArticleStatisticsFn(),
+		refetchOnWindowFocus: false,
+	});
+
 	return query;
 }
 

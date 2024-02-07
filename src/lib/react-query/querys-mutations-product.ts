@@ -2,6 +2,7 @@ import {
 	createProductFn,
 	deleteProductFn,
 	getProductFn,
+	getProductStatisticsFn,
 	getProductsFn,
 	upadateProductFn,
 } from '@/api/product';
@@ -39,6 +40,16 @@ export function useGetProduct(productId: string) {
 		retry: 1,
 		refetchOnWindowFocus: false,
 	});
+	return query;
+}
+
+export function useGetProductStatistics() {
+	const query = useQuery({
+		queryKey: [key.QUERY_KEY_PRODUCT_STATISTICS],
+		queryFn: () => getProductStatisticsFn(),
+		refetchOnWindowFocus: false,
+	});
+
 	return query;
 }
 

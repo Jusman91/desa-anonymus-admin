@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { MenuProps } from 'antd';
-import { ChartOptions } from 'chart.js';
 import { Rule } from 'antd/es/form';
 import { AxiosError } from 'axios';
 import type {
@@ -122,6 +121,16 @@ export interface IResponseError extends AxiosError {
 export interface IResponseCategories {
 	data: ICategories[];
 }
+export interface IResponseStatistics {
+	totalData: number;
+	newDataCountPerMonth: [
+		{
+			total: number;
+			year: number;
+			month: number;
+		},
+	];
+}
 // end api
 
 // categories
@@ -142,9 +151,10 @@ export interface TotalData {
 	percent: number;
 	dataChart: number[];
 }
-export interface ITotalDataProps
-	extends ChartOptions<'line'> {
-	data: TotalData;
+export interface ITotalDataProps {
+	title: string;
+	path: string;
+	data: IResponseStatistics;
 }
 export interface IChartConfigOptions {
 	services?: boolean | undefined;

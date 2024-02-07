@@ -1,22 +1,7 @@
 import { ChartData } from 'chart.js';
-
-const labels = [
-	'Jan',
-	'Feb',
-	'Mar',
-	'Apr',
-	'May',
-	'Jun',
-	'Jul',
-	'Aug',
-	'Sep',
-	'Oct',
-	'Nov',
-	'Dec',
-];
-
 export const setupLineChart = (
 	data: number[],
+	labels: string[],
 ): ChartData<'line'> => {
 	const dataChart: ChartData<'line'> = {
 		labels,
@@ -34,6 +19,7 @@ export const setupLineChart = (
 
 export const setupBarChart = (
 	data: number[],
+	labels: string[],
 ): ChartData<'bar'> => {
 	const dataChart: ChartData<'bar'> = {
 		labels,

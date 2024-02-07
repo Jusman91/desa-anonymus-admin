@@ -29,7 +29,7 @@ const RootLayout = () => {
 								<Sider
 									collapsed={collapse}
 									theme='light'
-									className='custom-scrollbar h-full overflow-y-scroll p-2'>
+									className='custom-scrollbar h-full overflow-y-scroll overflow-x-hidden p-2'>
 									<SideBar />
 								</Sider>
 								<ButtonCollapse

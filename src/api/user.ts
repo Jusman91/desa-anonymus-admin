@@ -78,3 +78,17 @@ export async function deleteUserFn(id: string) {
 		}
 	}
 }
+
+export async function getUserStatisticsFn() {
+	try {
+		const { data } = await axiosInstance.get(
+			'/users/statistics',
+		);
+		return data;
+	} catch (error) {
+		if (axios.isAxiosError<IResponseError>(error)) {
+			console.log(error);
+			throw error.response?.data;
+		}
+	}
+}

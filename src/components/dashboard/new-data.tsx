@@ -3,8 +3,13 @@ import { INewDataProps } from '@/types';
 import { Avatar, Flex } from 'antd';
 
 const NewData = ({ data }: INewDataProps) => {
+	const title = isProduct(data) ? data.name : data.title;
+
 	return (
-		<Flex align='center' justify='space-between'>
+		<Flex
+			align='center'
+			justify='space-between'
+			className='text-color-base'>
 			<Flex gap={10}>
 				<Avatar
 					src={
@@ -15,7 +20,9 @@ const NewData = ({ data }: INewDataProps) => {
 				/>
 				<Flex vertical>
 					<small className='font-bold'>
-						{isProduct(data) ? data.name : data.title}
+						{title.length > 10
+							? `${title.slice(0, 10)}...`
+							: title}
 					</small>
 					<small>
 						{isProduct(data)
@@ -24,10 +31,12 @@ const NewData = ({ data }: INewDataProps) => {
 					</small>
 				</Flex>
 			</Flex>
-			<span>
+			<span className='text-xs'>
 				{isProduct(data)
 					? `Rp. ${data.price}`
-					: data.author}
+					: data.author.length > 8
+						? `${data.author.slice(0, 8)}...`
+						: data.author}
 			</span>
 		</Flex>
 	);

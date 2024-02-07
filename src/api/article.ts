@@ -80,3 +80,17 @@ export async function deleteArticleFn(id: string) {
 		}
 	}
 }
+
+export async function getArticleStatisticsFn() {
+	try {
+		const { data } = await axiosInstance.get(
+			'/articles/statistics',
+		);
+		return data;
+	} catch (error) {
+		if (axios.isAxiosError<IResponseError>(error)) {
+			console.log(error);
+			throw error.response?.data;
+		}
+	}
+}

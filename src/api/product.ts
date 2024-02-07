@@ -80,3 +80,17 @@ export async function deleteProductFn(id: string) {
 		}
 	}
 }
+
+export async function getProductStatisticsFn() {
+	try {
+		const { data } = await axiosInstance.get(
+			'/products/statistics',
+		);
+		return data;
+	} catch (error) {
+		if (axios.isAxiosError<IResponseError>(error)) {
+			console.log(error);
+			throw error.response?.data;
+		}
+	}
+}

@@ -4,12 +4,12 @@ import { setupBarChart } from '@/lib/chart/chart-setup';
 import { IAnalitycsDataProps } from '@/types';
 import { chartConfigOptions } from '@/lib/chart/chart-config';
 import { Flex } from 'antd';
-// import { BarChartOptions } from '@/lib/chart/chart-config';
 
 const AnalitycsData = ({
 	data,
 	services,
 }: IAnalitycsDataProps) => {
+	const labels = ['label1', 'label2'];
 	return (
 		<div className='h-full'>
 			<Flex
@@ -18,7 +18,7 @@ const AnalitycsData = ({
 				className='h-full'>
 				<CustomTypography>{data.title}</CustomTypography>
 				<Bar
-					data={setupBarChart(data.dataChart)}
+					data={setupBarChart(data.dataChart, labels)}
 					options={chartConfigOptions({ services })}
 				/>
 			</Flex>

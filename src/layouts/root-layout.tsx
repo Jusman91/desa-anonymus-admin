@@ -29,7 +29,7 @@ const RootLayout = () => {
 								<Sider
 									collapsed={collapse}
 									theme='light'
-									className='custom-scrollbar h-full overflow-y-scroll overflow-x-hidden p-2'>
+									className='custom-scrollbar h-full shadow-md overflow-y-scroll overflow-x-hidden p-2'>
 									<SideBar />
 								</Sider>
 								<ButtonCollapse
@@ -38,7 +38,7 @@ const RootLayout = () => {
 								/>
 							</section>
 							<Layout className='px-4'>
-								<Header className='flex h-14 items-center rounded-md bg-bkg-container pl-2 pr-4 sticky top-0 z-[999]'>
+								<Header className='flex h-14 items-center rounded-md bg-bkg-container pl-2 shadow-md pr-4 sticky top-0 z-[999]'>
 									<Navbar />
 								</Header>
 								<Content className='py-2'>

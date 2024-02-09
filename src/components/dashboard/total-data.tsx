@@ -10,15 +10,16 @@ import {
 import { Line } from 'react-chartjs-2';
 import { setupLineChart } from '@/lib/chart/chart-setup';
 import { LineChartOption } from '@/lib/chart/chart-config';
+import { useMemo } from 'react';
 
 const TotalData = ({
 	title,
 	path,
 	data,
 }: ITotalDataProps) => {
-	const newDataCountPerMonth = (
-		data?.newDataCountPerMonth ?? []
-	).sort((a, b) => a.year - b.year);
+	const newDataCountPerMonth = useMemo(() => {
+		return data?.newDataCountPerMonth ?? [];
+	}, [data?.newDataCountPerMonth]);
 
 	const dataCount = data?.newDataCountPerMonth.map(
 		(item) => item.total,
